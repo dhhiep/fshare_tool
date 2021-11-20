@@ -1,0 +1,84 @@
+# The behavior of RuboCop can be controlled via the .rubocop.yml
+# configuration file. It makes it possible to enable/disable
+# certain cops (checks) and to alter their behavior if they accept
+# any parameters. The file can be placed either in your home
+# directory or in some project directory.
+#
+# RuboCop will start looking for the configuration file in the directory
+# where the inspected file is and continue its way up to the root directory.
+#
+# See https://docs.rubocop.org/rubocop/configuration
+# https://docs.rubocop.org/rubocop/cops_metrics.html
+# https://github.com/rubocop-hq/rubocop/blob/v1.5.0/config/default.yml
+# https://github.com/rubocop-hq/rubocop/blob/v1.5.0/.rubocop.yml
+#
+# Usage
+# bundle exec rubocop --parallel --format html --out rubocop.html
+# bundle exec rubocop --auto-correct-all --only Style/FrozenStringLiteralComment,Layout/EmptyLineAfterMagicComment
+# bundle exec rubocop --auto-correct-all --only Style/StringLiterals,Layout/EmptyLineAfterGuardClause,Layout/EmptyLines
+# bundle exec rubocop --auto-correct-all --only Layout/ExtraSpacing,Layout/SpaceAroundOperators,Layout/SpaceInsideArrayLiteralBrackets
+# bundle exec rubocop --auto-correct-all --only Style/ExpandPathArguments
+# bundle exec rubocop --auto-correct-all --only Style/GlobalStdStream
+# bundle exec rubocop --auto-correct-all --only Style/RedundantFetchBlock
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - 'spec/fixtures/**/*'
+    - 'tmp/**/*'
+    - '.git/**/*'
+    - 'bin/*'
+  TargetRubyVersion: 2.7
+
+Layout/LineLength:
+  Description: 'Checks that line length does not exceed the configured limit.'
+  Max: 120
+
+Style/Documentation:
+  Description: 'Document classes and non-namespace modules.'
+  Enabled: false
+
+Style/BlockComments:
+  Description: 'Do not use block comments.'
+  Enabled: false
+
+Style/AsciiComments:
+  Description: 'Use only ascii symbols in comments.'
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  Description: 'Checks for trailing comma in argument lists.'
+  Enabled: false
+
+Style/TrailingCommaInBlockArgs:
+  Description: 'Checks for useless trailing commas in block arguments.'
+  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  Description: 'Checks for trailing comma in array literals.'
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  Description: 'Checks for trailing comma in hash literals.'
+  Enabled: false
+
+Lint/RescueException:
+  Description: 'Avoid rescuing the Exception class.'
+  Enabled: false
+
+Style/RescueModifier:
+  Description: 'Avoid using rescue in its modifier form.'
+  Enabled: false
+
+Style/RescueStandardError:
+  Description: 'Avoid rescuing without specifying an error class.'
+  Enabled: false
+
+Style/ParallelAssignment:
+  Description: >-
+                  Check for simple usages of parallel assignment.
+                  It will only warn when the number of variables
+                  matches on both sides of the assignment.
+  Enabled: false
