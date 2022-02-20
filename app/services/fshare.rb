@@ -63,18 +63,20 @@ class Fshare
   end
 
   def requester(path, body = {})
+    url = URI("#{base_url}#{path}")
+
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
+    https.open_timeout = 5
+    https.read_timeout = 5
 
-    request = build_request(path, body)
+    request = build_request(url, body)
     result = https.request(request)
 
     OpenStruct.new(code: result.code.to_i, body: parse_response_body(result))
   end
 
-  def build_request(path, body = {})
-    url = URI("#{base_url}#{path}")
-
+  def build_request(url, body = {})
     request = Net::HTTP::Post.new(url)
     request['Content-Type'] = 'application/json'
     request['User-Agent'] = user_agent
