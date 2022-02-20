@@ -30,4 +30,8 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# Local environment
 .env
+
+# Node packages
+browser_extenstions/chrome/node_modules
