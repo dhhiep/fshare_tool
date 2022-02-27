@@ -1,0 +1,75 @@
+fshare-file {
+  position: relative;
+}
+
+fshare-file .folder-action {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+fshare-file .folder-action ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+fshare-file .folder-action ul li {
+  display: inline-block;
+  cursor: pointer;
+  color: #fff;
+  background-color: #cd1417;
+  height: 100%;
+  padding: 10px 15px;
+  border-radius: 2px;
+  margin-left: 5px;
+}
+
+fshare-file .folder-action ul li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+#fshare-tool-hooker #navigation {
+  padding: 0 25px;
+}
+
+#fshare-tool-hooker #main-content {
+  padding: 25px;
+}
+
+.popover-title {
+  display: none;
+}
+
+.popover .popover-container .popover-inner .popover-content {
+  display: flex;
+  padding: 5px;
+}
+
+.popover-content .fshare-popover-btn {
+  color: #fff;
+  text-decoration: none;
+  margin: 5px 5px;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: 'Arial';
+}
+
+.popover-content .fshare-popover-btn.play {
+  background: #44803F;
+}
+
+.popover-content .fshare-popover-btn.download {
+  background: #146152;
+}
+
+.popover-content .fshare-popover-btn.open {
+  background: #FF5A33;
+}
+

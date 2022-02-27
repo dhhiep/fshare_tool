@@ -1,0 +1,17 @@
+{
+  "name": "fshare_tool_browser_extensions",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "lint": "vue-cli-service lint",
+    "prettier:check": "prettier --check .",
+    "prettier:write": "prettier --write ."
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.1.3",
+    "prettier": "^2.5.1"
+  }
+}
