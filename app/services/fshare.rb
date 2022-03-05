@@ -5,9 +5,14 @@ require 'net/http'
 class Fshare
   include Error::ExceptionErrorBuilder
 
+  class_attribute :token, :session_id, :token_updated
+
   attr_reader :token, :session_id
 
   def login!
+    # Keep session id and token if login success in 30 minutes
+    return 'Session restored!' if self.class.token_updated.present? && self.class.token_updated >= 30.minutes.ago
+
     body = {
       user_email: user_email,
       password: password,
@@ -56,6 +61,8 @@ class Fshare
   def capture_token_and_session_id(response)
     @token = response.body['token']
     @session_id = "session_id=#{response.body['session_id']}"
+
+    cache_latest_session!
   end
 
   def url_builder(file_id, type: 'file')
@@ -89,6 +96,12 @@ class Fshare
     JSON.parse(response.read_body)
   rescue
     response.read_body.presence || {}
+  end
+
+  def cache_latest_session!
+    self.class.token = token
+    self.class.token_updated = Time.current
+    self.class.session_id = session_id
   end
 
   def base_url
