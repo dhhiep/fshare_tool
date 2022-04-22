@@ -22,7 +22,9 @@ const libraryInjector = () => {
       path: 'scripts/services/fshare.js',
       disabled: () => false,
       matches: [],
-      onload: () => {},
+      onload: () => {
+        Fshare.bindingFshareActions();
+      },
     },
     {
       path: 'scripts/services/fshare/file.js',

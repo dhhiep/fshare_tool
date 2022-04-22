@@ -91,14 +91,10 @@ class FshareFile extends Fshare {
 
       if (isAsALink || isAsAText) {
         totalFshareLinkCounter++;
-
         const fshareLink = isAsALink ? $.trim(element.attr('href')) : $.trim(element.html());
-        const fshareLinkId = this.fshareLinkId(fshareLink);
 
         // Prevent link redirect
-        element.click(function (event) {
-          event.preventDefault();
-        });
+        element.click((event) => event.preventDefault());
 
         element.popover({
           delay: 100,
@@ -106,9 +102,9 @@ class FshareFile extends Fshare {
           trigger: 'hover',
           autoPlace: true,
           content: `
-            <a class='fshare-popover-btn play fshare-popover-action play' href='${fshareLinkId}'>Play</a>
-            <a class='fshare-popover-btn download fshare-popover-action download' href='${fshareLinkId}'>Download</a>
-            <a class='fshare-popover-btn open' target='_blank' href='${fshareLink}'>Open</span>
+            <a class='fshare-popover-btn open' data-fshare-link='${fshareLink}'>Open</span>
+            <a class='fshare-popover-btn fshare-popover-action play' data-fshare-link='${fshareLink}'>Play</a>
+            <a class='fshare-popover-btn fshare-popover-action download' data-fshare-link='${fshareLink}'>Download</a>
           `,
         });
 
@@ -117,22 +113,6 @@ class FshareFile extends Fshare {
         });
       }
     });
-
-    $(document)
-      .off('click', '.fshare-popover-action')
-      .on('click', '.fshare-popover-action', function (event) {
-        event.preventDefault();
-
-        const action = $(event.target);
-
-        if (action.hasClass('play')) {
-          FshareFile.openInVlc(action.attr('href'));
-        }
-
-        if (action.hasClass('download')) {
-          FshareFile.download(action.attr('href'));
-        }
-      });
 
     console.log(`Scan Fshare Link is finished. Total Fshare Links: ${totalFshareLinkCounter}`);
   }

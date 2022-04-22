@@ -13,7 +13,7 @@ class FshareFolder extends Fshare {
       this.addFolderTab();
 
       const mainTree = this.initializeTree((tree) => {
-        this.fetchFshareFolder(this.fshareFolderId(), 1, tree, null, (data) => {
+        this.fetchFshareFolder(this.currentFshareLinkCode(), 1, tree, null, (data) => {
           tree.removeRow(0);
           this.setData('currentPage', data.meta.current_page);
           this.setData('totalPage', data.meta.total_page);
@@ -39,12 +39,6 @@ class FshareFolder extends Fshare {
       contextMenu: ({ rowKey }) => this.contextMenu(tree, rowKey),
       treeColumnOptions: {
         name: 'name',
-      },
-      onGridMounted: () => {
-        this.bindingEventFshareActions();
-      },
-      onGridUpdated: () => {
-        this.bindingEventFshareActions();
       },
       columns: [
         {
@@ -158,7 +152,7 @@ class FshareFolder extends Fshare {
       this.setData('currentPage', null);
       this.setData('totalPage', null);
 
-      this.fetchFshareFolder(this.fshareFolderId(), nextPage, tree, null, (data) => {
+      this.fetchFshareFolder(this.currentFshareLinkCode(), nextPage, tree, null, (data) => {
         this.setData('currentPage', data.meta.current_page);
         this.setData('totalPage', data.meta.total_page);
       });
@@ -203,24 +197,6 @@ class FshareFolder extends Fshare {
         },
       ],
     ];
-  }
-
-  bindingEventFshareActions() {
-    $(document)
-      .off('click', '.fshare-action')
-      .on('click', '.fshare-action', function (event) {
-        event.preventDefault();
-        const element = $(event.target);
-        const linkCode = element.data('linkCode');
-
-        if (element.hasClass('play-in-vlc') || element.hasClass('add-to-vlc')) {
-          FshareFile.openInVlc(linkCode);
-        }
-
-        if (element.hasClass('download')) {
-          FshareFile.download(linkCode);
-        }
-      });
   }
 
   fetchInfiniteFshareFolder(linkCode, page, tree, parentRowKey) {
@@ -320,25 +296,24 @@ class FshareFolder extends Fshare {
   }
 
   cellActionsBuilder(data) {
-    const { linkcode, furl, type } = data.row;
-    let actions = [];
+    const { furl, type } = data.row;
+    let actions = [`<li class="fshare-action open" data-fshare-link='${furl}'>Open</li>`];
 
     if (type !== 'folder') {
-      actions.push(`<li class="fshare-action download" data-link-code='${linkcode}'>Download</li>`);
+      actions.push(`<li class="fshare-action download" data-fshare-link='${furl}'>Download</li>`);
     }
 
     if (type == 'video') {
-      actions.push(`<li class="fshare-action play-in-vlc" data-link-code='${linkcode}'>Play in VLC</li>`);
+      actions.push(`<li class="fshare-action play-in-vlc play" data-fshare-link='${furl}'>Play in VLC</li>`);
     }
 
     if (type == 'subtitle') {
-      actions.push(`<li class="fshare-action add-to-vlc" data-link-code='${linkcode}'>Add to VLC</li>`);
+      actions.push(`<li class="fshare-action add-to-vlc play" data-fshare-link='${furl}'>Add to VLC</li>`);
     }
 
     return `
       <div class="folder-action">
         <ul>
-          <li class="open" onclick="window.open('${furl}')">Open</li>
           ${actions.join('')}
         </ul>
       </div>
