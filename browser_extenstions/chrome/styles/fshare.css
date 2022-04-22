@@ -1,42 +1,68 @@
-fshare-file {
-  position: relative;
-}
-
-fshare-file .folder-action {
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0;
+.folder-action {
   padding: 0;
   margin: 0;
   display: flex;
   align-items: center;
 }
 
-fshare-file .folder-action ul {
+.folder-action ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-fshare-file .folder-action ul li {
+.folder-action ul li {
   display: inline-block;
   cursor: pointer;
   color: #fff;
   background-color: #cd1417;
-  height: 100%;
-  padding: 10px 15px;
   border-radius: 2px;
   margin-left: 5px;
+  box-sizing: border-box;
+  height: 30px;
+  padding: 8px 15px;
+  text-align: center;
 }
 
-fshare-file .folder-action ul li a {
+.folder-action ul li.open{
+  background: #FF5A33;
+}
+
+.folder-action ul li.play-in-vlc{
+  width: 100px;
+  background: #44803F;
+
+}
+.folder-action ul li.add-to-vlc {
+  width: 100px;
+  background: #146152;
+}
+
+.folder-action ul li a {
   text-decoration: none;
   color: #fff;
 }
 
 #fshare-tool-hooker #navigation {
   padding: 0 25px;
+  display: flex;
+  list-style: none;
+}
+#fshare-tool-hooker #navigation .nav-item {
+  padding: 10px;
+  background: #146152;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+#fshare-tool-hooker #navigation .nav-item:last-child {
+  background: #FF5A33;
+}
+
+#fshare-tool-hooker #navigation .nav-item a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
 }
 
 #fshare-tool-hooker #main-content {

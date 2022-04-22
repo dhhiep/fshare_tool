@@ -23,19 +23,19 @@
     ],
     "js": [
       "scripts/vendor/jquery.min.js",
-      "scripts/vendor/bootstrap.bundle.min.js",
       "scripts/vendor/popover.min.js",
       "scripts/vendor/toastr.min.js",
-      "scripts/vendor/datatables.min.js",
-      "scripts/vendor/dataTables.scroller.min.js",
+      "scripts/vendor/tui-grid.js",
       "scripts/services/library_injector.js",
       "scripts/services/fshare.js",
+      "scripts/services/fshare/file.js",
+      "scripts/services/fshare/folder.js",
       "scripts/main.js"
     ],
     "css": [
       "styles/vendor/popover.css",
       "styles/vendor/toastr.min.css",
-      "styles/vendor/datatables.min.css",
+      "styles/vendor/tui-grid.css",
       "styles/fshare.css"
     ]
   }],
@@ -43,11 +43,11 @@
     "matches": ["*://*/*"],
     "resources": [
       "scripts/vendor/jquery.min.js",
-      "scripts/vendor/bootstrap.bundle.min.js",
       "scripts/vendor/toastr.min.js",
-      "scripts/vendor/datatables.min.js",
-      "scripts/vendor/dataTables.scroller.min.js",
-      "scripts/services/fshare.js"
+      "scripts/vendor/tui-grid.js",
+      "scripts/services/fshare.js",
+      "scripts/services/fshare/file.js",
+      "scripts/services/fshare/folder.js"
     ]
   }],
   "icons": {

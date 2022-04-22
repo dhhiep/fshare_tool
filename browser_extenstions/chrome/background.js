@@ -49,7 +49,7 @@ const contextMenusHandler = (tab) => {
       chrome.scripting.executeScript({
         target: { tabId: tabs[0].id },
         function: () => {
-          Fshare.scanFshareLink();
+          FshareFile.scanFshareLink();
           toastr.success('Re-scan Fshare Links was successfully!');
         },
       });

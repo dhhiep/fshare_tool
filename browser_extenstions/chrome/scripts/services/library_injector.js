@@ -2,47 +2,52 @@ const libraryInjector = () => {
   const libs = [
     {
       path: 'scripts/vendor/jquery.min.js',
-      disabled: $.fn && $.fn.jquery.length > 0, // JQuery is installed
+      disabled: () => $.fn && $.fn.jquery.length > 0, // JQuery is installed
       matches: [],
-      onload: () => {},
-    },
-    {
-      path: 'scripts/vendor/bootstrap.bundle.min.js',
-      disabled: false,
-      matches: [/https:\/\/.*fshare.vn\/folder\//],
       onload: () => {},
     },
     {
       path: 'scripts/vendor/toastr.min.js',
-      disabled: false,
+      disabled: () => false,
       matches: [],
-      onload: () => {
-        setTimeout(function () {
-          Fshare.attachActions();
-        }, 3000);
-      },
-    },
-    {
-      path: 'scripts/vendor/datatables.min.js',
-      matches: [/https:\/\/.*fshare.vn\/folder\//],
       onload: () => {},
     },
     {
-      path: 'scripts/vendor/dataTables.scroller.min.js',
-      disabled: false,
+      path: 'scripts/vendor/tui-grid.js',
+      disabled: () => false,
       matches: [/https:\/\/.*fshare.vn\/folder\//],
       onload: () => {},
     },
     {
       path: 'scripts/services/fshare.js',
-      disabled: false,
+      disabled: () => false,
       matches: [],
       onload: () => {},
+    },
+    {
+      path: 'scripts/services/fshare/file.js',
+      disabled: () => false,
+      matches: [],
+      onload: () => {
+        setTimeout(function () {
+          FshareFile.attachActions();
+        }, 3000);
+      },
+    },
+    {
+      path: 'scripts/services/fshare/folder.js',
+      disabled: () => false,
+      matches: [/https:\/\/.*fshare.vn\/folder\//],
+      onload: () => {
+        setTimeout(function () {
+          FshareFolder.attachActions();
+        }, 3000);
+      },
     },
   ];
 
   libs.forEach((lib) => {
-    if (lib.disabled) return;
+    if (lib.disabled()) return;
 
     let scriptTag = document.createElement('script');
     scriptTag.src = chrome.runtime.getURL(lib.path);
@@ -53,7 +58,8 @@ const libraryInjector = () => {
 
     // Avoid error undefined appendChild
     document;
-
     (document.head || document.documentElement).appendChild(scriptTag);
+
+    console.log('Library', lib.path, 'was injected!');
   });
 };
