@@ -35,17 +35,25 @@ class Fshare {
     return chrome.storage.sync.get(['settings'], (data) => callback(data));
   }
 
-  healthCheck(onSuccess = () => {}, onError = () => {}) {
+  healthCheck(option = {}, onSuccess = () => {}, onError = () => {}) {
+    option.displayServerStatus ||= true;
+
     this.settings((data) => {
       $.ajax({
         method: 'get',
         url: data.settings.serverUrl,
         success: () => {
-          toastr.success(`${data.settings.serverUrl} is ready!`);
+          if (option.displayServerStatus) {
+            toastr.success(`${data.settings.serverUrl} is ready!`);
+          }
+
           onSuccess(data);
         },
         error: () => {
-          toastr.warning(`${data.settings.serverUrl} isn't ready!`);
+          if (option.displayServerStatus) {
+            toastr.warning(`${data.settings.serverUrl} isn't ready!`);
+          }
+
           onError(data);
         },
       });

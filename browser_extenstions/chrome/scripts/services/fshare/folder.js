@@ -9,7 +9,7 @@ class FshareFolder extends Fshare {
     if (!this.isFshareFolder()) return;
     console.log('[Fshare Tool] Fshare Folder is processing ...');
 
-    this.healthCheck((data) => {
+    this.healthCheck({}, (data) => {
       this.addFolderTab();
 
       const mainTree = this.initializeTree((tree) => {
