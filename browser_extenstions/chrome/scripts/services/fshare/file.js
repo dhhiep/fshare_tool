@@ -31,7 +31,7 @@ class FshareFile extends Fshare {
       console.log('[Fshare Tool] Fshare File is processing ...');
     } else {
       console.log('[Fshare Tool] Scan Fshare link for non-fshare page');
-      this.healthCheck({}, () => {
+      this.healthCheck({ displayServerStatus: false }, () => {
         this.scanFshareLink();
       });
     }
@@ -132,6 +132,8 @@ class FshareFile extends Fshare {
       }
     });
 
-    toastr.success(`Scan Fshare Link is finished. Total Fshare Links: ${totalFshareLinkCounter}`);
+    if (totalFshareLinkCounter > 0) {
+      toastr.success(`Scan Fshare Link is finished. Total Fshare Links: ${totalFshareLinkCounter}`);
+    }
   }
 }

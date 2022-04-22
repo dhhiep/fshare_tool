@@ -36,7 +36,7 @@ class Fshare {
   }
 
   healthCheck(option = {}, onSuccess = () => {}, onError = () => {}) {
-    option.displayServerStatus ||= true;
+    if (option.displayServerStatus == null) option.displayServerStatus = true;
 
     this.settings((data) => {
       $.ajax({
