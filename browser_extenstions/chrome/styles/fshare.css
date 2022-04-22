@@ -1,74 +1,4 @@
-.folder-action {
-  padding: 0;
-  margin: 0;
-  display: flex;
-  align-items: center;
-}
-
-.folder-action ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.folder-action ul li {
-  display: inline-block;
-  cursor: pointer;
-  color: #fff;
-  background-color: #cd1417;
-  border-radius: 2px;
-  margin-left: 5px;
-  box-sizing: border-box;
-  height: 30px;
-  padding: 8px 15px;
-  text-align: center;
-}
-
-.folder-action ul li.open{
-  background: #FF5A33;
-}
-
-.folder-action ul li.play-in-vlc{
-  width: 100px;
-  background: #44803F;
-
-}
-.folder-action ul li.add-to-vlc {
-  width: 100px;
-  background: #146152;
-}
-
-.folder-action ul li a {
-  text-decoration: none;
-  color: #fff;
-}
-
-#fshare-tool-hooker #navigation {
-  padding: 0 25px;
-  display: flex;
-  list-style: none;
-}
-#fshare-tool-hooker #navigation .nav-item {
-  padding: 10px;
-  background: #146152;
-  border-radius: 4px;
-  margin-right: 5px;
-}
-
-#fshare-tool-hooker #navigation .nav-item:last-child {
-  background: #FF5A33;
-}
-
-#fshare-tool-hooker #navigation .nav-item a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: 600;
-}
-
-#fshare-tool-hooker #main-content {
-  padding: 25px;
-}
-
+/* NON-FSHARE PAGE*/
 .popover-title {
   display: none;
 }
@@ -85,6 +15,7 @@
   padding: 10px;
   border-radius: 4px;
   font-family: 'Arial';
+  cursor: pointer;
 }
 
 .popover-content .fshare-popover-btn.play {
@@ -99,3 +30,106 @@
   background: #FF5A33;
 }
 
+/* FSHARE FILE PAGE */
+#fshare-file-actions {
+  width: 300px;
+}
+
+#fshare-file-actions ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+#fshare-file-actions ul li {
+  color: #fff;
+  text-decoration: none;
+  margin: 0px 10px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-family: 'Arial';
+  cursor: pointer;
+}
+
+#fshare-file-actions ul li.download {
+  background: #FF5A33;
+}
+
+#fshare-file-actions ul li.play {
+  background: #44803F;
+}
+
+/* FSHARE FOLDER PAGE */
+#fshare-tool-folder-wrapper #navigation {
+  padding: 0 25px;
+  display: flex;
+  list-style: none;
+}
+#fshare-tool-folder-wrapper #navigation .nav-item {
+  padding: 10px;
+  background: #146152;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+#fshare-tool-folder-wrapper #navigation .nav-item:last-child {
+  background: #FF5A33;
+}
+
+#fshare-tool-folder-wrapper #navigation .nav-item a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+}
+
+#fshare-tool-folder-wrapper #main-content {
+  padding: 25px;
+}
+
+.fshare-folder-action {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.fshare-folder-action ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fshare-folder-action ul li {
+  display: inline-block;
+  cursor: pointer;
+  color: #fff;
+  background-color: #cd1417;
+  border-radius: 2px;
+  margin-left: 5px;
+  box-sizing: border-box;
+  height: 30px;
+  padding: 8px 15px;
+  text-align: center;
+}
+
+.fshare-folder-action ul li.open{
+  background: #FF5A33;
+}
+
+.fshare-folder-action ul li.play-in-vlc{
+  width: 100px;
+  background: #44803F;
+
+}
+.fshare-folder-action ul li.add-to-vlc {
+  width: 100px;
+  background: #146152;
+}
+
+.fshare-folder-action ul li a {
+  text-decoration: none;
+  color: #fff;
+}

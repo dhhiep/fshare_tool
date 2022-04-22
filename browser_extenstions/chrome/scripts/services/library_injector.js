@@ -13,6 +13,12 @@ const libraryInjector = () => {
       onload: () => {},
     },
     {
+      path: 'scripts/vendor/jquery.modal.min.js',
+      disabled: () => false,
+      matches: [/https:\/\/.*fshare.vn\/file\//],
+      onload: () => {},
+    },
+    {
       path: 'scripts/vendor/tui-grid.js',
       disabled: () => false,
       matches: [/https:\/\/.*fshare.vn\/folder\//],
@@ -31,9 +37,11 @@ const libraryInjector = () => {
       disabled: () => false,
       matches: [],
       onload: () => {
-        setTimeout(function () {
-          FshareFile.attachActions();
-        }, 3000);
+        $(document).ready(() => {
+          setTimeout(function () {
+            FshareFile.attachActions();
+          }, 500);
+        });
       },
     },
     {
@@ -41,9 +49,11 @@ const libraryInjector = () => {
       disabled: () => false,
       matches: [/https:\/\/.*fshare.vn\/folder\//],
       onload: () => {
-        setTimeout(function () {
-          FshareFolder.attachActions();
-        }, 3000);
+        $(document).ready(() => {
+          setTimeout(function () {
+            FshareFolder.attachActions();
+          }, 500);
+        });
       },
     },
   ];

@@ -25,7 +25,9 @@ class FshareFile extends Fshare {
     if (this.isFshareFolder()) return;
 
     if (this.isFshare()) {
-      this.healthCheck();
+      this.healthCheck({}, () => {
+        this.attachFshareLinkPopup();
+      });
       console.log('[Fshare Tool] Fshare File is processing ...');
     } else {
       console.log('[Fshare Tool] Scan Fshare link for non-fshare page');
@@ -75,6 +77,20 @@ class FshareFile extends Fshare {
         },
       });
     });
+  }
+
+  attachFshareLinkPopup() {
+    const html = `
+        <div id="fshare-file-actions" class="modal">
+          <ul>
+            <li class="fshare-action download" data-fshare-link="${window.location.href}">Download</li>
+            <li class="fshare-action play" data-fshare-link="${window.location.href}">Play in VLC</li>
+          </ul>
+        </div>
+      `;
+
+    $('body').append(html);
+    $('#fshare-file-actions').modal();
   }
 
   scanFshareLink() {

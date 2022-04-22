@@ -258,7 +258,7 @@ class FshareFolder extends Fshare {
 
   addFolderTab() {
     const html = `
-      <div id="fshare-tool-hooker">
+      <div id="fshare-tool-folder-wrapper">
         <ul class="nav nav-tabs" id="navigation" role="tablist">
           <li class="nav-item" role="presentation" >
             <a class="nav-link active" id="processed-tab" href="javascript:;" data-toggle="tab" data-tab="#processed">Processed</a>
@@ -277,15 +277,15 @@ class FshareFolder extends Fshare {
     $('.download-file folder').hide();
     $('html, body').css('overflow', 'hidden');
 
-    $('#fshare-tool-hooker a[data-toggle="tab"]').on('click', function (event) {
+    $('#fshare-tool-folder-wrapper a[data-toggle="tab"]').on('click', function (event) {
       switch ($(event.target).data('tab')) {
         case '#processed':
-          $('#fshare-tool-hooker #main-content').show();
+          $('#fshare-tool-folder-wrapper #main-content').show();
           $('.download-file folder').hide();
           $('html, body').css('overflow', 'hidden');
           break;
         case '#original':
-          $('#fshare-tool-hooker #main-content').hide();
+          $('#fshare-tool-folder-wrapper #main-content').hide();
           $('.download-file folder').show();
           $('html, body').css('overflow', 'auto');
           break;
@@ -312,7 +312,7 @@ class FshareFolder extends Fshare {
     }
 
     return `
-      <div class="folder-action">
+      <div class="fshare-folder-action">
         <ul>
           ${actions.join('')}
         </ul>
