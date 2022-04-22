@@ -7,9 +7,13 @@
   display: none;
 }
 
+.popover .popover-container  {
+  z-index: 999;
+}
+
 .popover .popover-container .popover-inner .popover-content {
   display: flex;
-  padding: 5px;
+  padding: 5px 15px;
   flex-direction: column;
 }
 
