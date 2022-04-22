@@ -11,7 +11,7 @@ class Fshare
 
   def login!
     # Keep session id and token if login success in 30 minutes
-    return 'Session restored!' if self.class.token_updated.present? && self.class.token_updated >= 30.minutes.ago
+    return restore_session! if self.class.token_updated.present? && self.class.token_updated >= 30.minutes.ago
 
     body = {
       user_email: user_email,
@@ -19,7 +19,7 @@ class Fshare
       app_key: app_key,
     }
 
-    response = requester('/user/login', body)
+    response = requester(:post, '/user/login', body)
     raise Error::GatewayError, { message: 'Login failure', details: response.body } if response.code != 200
 
     capture_token_and_session_id(response)
@@ -35,7 +35,7 @@ class Fshare
       token: token,
     }
 
-    response = requester('/session/download', body)
+    response = requester(:post, '/session/download', body)
     raise Error::GatewayError, { message: 'Get direct link failure', details: response.body } if response.code != 200
 
     response
@@ -50,52 +50,31 @@ class Fshare
       limit: per_page,
     }
 
-    response = requester('/fileops/getFolderList', body)
+    response = requester(:post, '/fileops/getFolderList', body)
     raise Error::GatewayError, { message: 'Get list  failure', details: response.body } if response.code != 200
 
     response
   end
 
+  def list_v3(list_id, page: 1, per_page: 50, options: {})
+    url = 'https://www.fshare.vn/api/v3/files/folder'
+    body = {
+      linkcode: list_id,
+      sort: options[:sort_by] || 'type,name',
+      page: page,
+      'per-page': per_page
+    }
+
+    Http::Requester.make_request(:get, url, body)
+  end
+
   private
 
   def capture_token_and_session_id(response)
-    @token = response.body['token']
-    @session_id = "session_id=#{response.body['session_id']}"
+    @token = response.body[:token]
+    @session_id = "session_id=#{response.body[:session_id]}"
 
     cache_latest_session!
-  end
-
-  def url_builder(file_id, type: 'file')
-    "https://www.fshare.vn/#{type}/#{file_id}"
-  end
-
-  def requester(path, body = {})
-    url = URI("#{base_url}#{path}")
-
-    https = Net::HTTP.new(url.host, url.port)
-    https.use_ssl = true
-    https.open_timeout = 5
-    https.read_timeout = 5
-
-    request = build_request(url, body)
-    result = https.request(request)
-
-    OpenStruct.new(code: result.code.to_i, body: parse_response_body(result))
-  end
-
-  def build_request(url, body = {})
-    request = Net::HTTP::Post.new(url)
-    request['Content-Type'] = 'application/json'
-    request['User-Agent'] = user_agent
-    request['Cookie'] = session_id
-    request.body = JSON.dump(body)
-    request
-  end
-
-  def parse_response_body(response)
-    JSON.parse(response.read_body)
-  rescue
-    response.read_body.presence || {}
   end
 
   def cache_latest_session!
@@ -104,8 +83,32 @@ class Fshare
     self.class.session_id = session_id
   end
 
-  def base_url
-    'https://api.fshare.vn/api'
+  def restore_session!
+    @token = self.class.token
+    @session_id = self.class.session_id
+  end
+
+  def url_builder(file_id, type: 'file')
+    "https://www.fshare.vn/#{type}/#{file_id}"
+  end
+
+  def requester(http_verb, path, body = {}, options = {})
+    Http::Requester.make_request(http_verb, url(path), body, default_options.merge(options))
+  end
+
+  def url(path)
+    "https://api.fshare.vn/api#{path}"
+  end
+
+  def default_options
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        'User-Agent': user_agent,
+        Cookie: session_id,
+      },
+      timeout: 5,
+    }
   end
 
   def user_email

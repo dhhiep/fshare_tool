@@ -16,7 +16,7 @@ class Vlc
     def fshare_play_or_add_subtitle(video_or_subtitle_id)
       fshare = Fshare.new
       fshare.login!
-      fshare_file_url = fshare.direct_link(video_or_subtitle_id).body['location']
+      fshare_file_url = fshare.direct_link(video_or_subtitle_id).body[:location]
 
       return play_video(fshare_file_url) if video?(fshare_file_url)
       return add_subtitle(fshare_file_url) if subtitle?(fshare_file_url)
