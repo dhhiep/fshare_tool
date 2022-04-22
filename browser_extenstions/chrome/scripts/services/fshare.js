@@ -77,6 +77,8 @@ class Fshare {
   }
 
   fshareLinkCode(url) {
-    return url.match(/fshare.vn\/(file|folder)\/(\w+|\d+)/)[2];
+    const regexMatched = url.match(/fshare.vn\/(file|folder)\/(\w+|\d+)/);
+
+    return regexMatched && regexMatched.length > 1 ? regexMatched[2] : '';
   }
 }

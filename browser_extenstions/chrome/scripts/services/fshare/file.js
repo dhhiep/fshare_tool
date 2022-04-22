@@ -97,7 +97,7 @@ class FshareFile extends Fshare {
     const whiteListTag = `
       a, address, article, aside, b, base, button, caption,
       center,code, div, em, h1, h2, h3, h4, h5, h6,
-      i, li, link, p, small, span, strong, td
+      i, li, link, p, small, span, strong, td, pre
     `;
     let totalFshareLinkCounter = 0;
 
@@ -119,11 +119,7 @@ class FshareFile extends Fshare {
           placement: 'top',
           trigger: 'hover',
           autoPlace: true,
-          content: `
-            <a class='fshare-popover-btn open' data-fshare-link='${fshareLink}'>Open</span>
-            <a class='fshare-popover-btn fshare-popover-action play' data-fshare-link='${fshareLink}'>Play</a>
-            <a class='fshare-popover-btn fshare-popover-action download' data-fshare-link='${fshareLink}'>Download</a>
-          `,
+          content: this.popoverContent(fshareLink).join(' '),
         });
 
         element.on('shown.bs.popover', () => {
@@ -135,5 +131,21 @@ class FshareFile extends Fshare {
     if (totalFshareLinkCounter > 0) {
       toastr.success(`Scan Fshare Link is finished. Total Fshare Links: ${totalFshareLinkCounter}`);
     }
+  }
+
+  popoverContent(fshareLink) {
+    const links = fshareLink.split('\n');
+    const linkDescriptionClass = links.length <= 1 ? 'hide' : '';
+
+    return $.map(links, (link) => {
+      return `
+        <div class='fshare-popover-wrapper'>
+          <span class='link-description ${linkDescriptionClass}'>#${this.fshareLinkCode(link)} - </span>
+          <a class='fshare-popover-btn open' data-fshare-link='${link}'>Open</span>
+          <a class='fshare-popover-btn fshare-popover-action play' data-fshare-link='${link}'>Play</a>
+          <a class='fshare-popover-btn fshare-popover-action download' data-fshare-link='${link}'>Download</a>
+        </div>
+      `;
+    });
   }
 }
