@@ -12,6 +12,7 @@ Rails.application.routes.draw do
           get :play
           get :download
           get :list
+          get :list_v3
         end
       end
     end

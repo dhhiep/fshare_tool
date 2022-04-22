@@ -14,7 +14,20 @@ module Api
         per_page = (params[:per_page] || 60).to_i
         result = fshare.list(params[:id], page: page, per_page: per_page)
 
-        render json: result.body, code: result.code
+        data = ::FshareFolderSerializer.call(result.body)
+        render json: data, code: result.code
+      end
+
+      def list_v3
+        page = (params[:page] || 1).to_i
+        per_page = (params[:per_page] || 50).to_i
+        options = {
+          sort_by: 'type,name'
+        }
+        result = fshare.list_v3(params[:id], page: page, per_page: per_page, options: options)
+
+        data = ::FshareFolderV3Serializer.call(result.body)
+        render json: data, code: result.code
       end
 
       def play
