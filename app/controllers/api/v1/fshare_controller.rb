@@ -21,10 +21,9 @@ module Api
       def list_v3
         page = (params[:page] || 1).to_i
         per_page = (params[:per_page] || 50).to_i
-        options = {
-          sort_by: 'type,name'
-        }
-        result = fshare.list_v3(params[:id], page: page, per_page: per_page, options: options)
+        options = { sort_by: 'type,name' }
+        result = Fshare.new.list_v3(params[:id], page: page, per_page: per_page, options: options)
+        raise Error::GatewayError, { message: 'Fetch data failure!', details: result.to_h } if result.failure?
 
         data = ::FshareFolderV3Serializer.call(result.body)
         render json: data, code: result.code

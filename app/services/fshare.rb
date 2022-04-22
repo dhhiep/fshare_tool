@@ -65,7 +65,7 @@ class Fshare
       'per-page': per_page
     }
 
-    Http::Requester.make_request(:get, url, body)
+    Http::Requester.make_request(:get, url, body, { timeout: 5 })
   end
 
   private
