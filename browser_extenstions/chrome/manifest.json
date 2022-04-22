@@ -25,6 +25,7 @@
       "scripts/vendor/jquery.min.js",
       "scripts/vendor/popover.min.js",
       "scripts/vendor/toastr.min.js",
+      "scripts/vendor/jquery.modal.min.js",
       "scripts/vendor/tui-grid.js",
       "scripts/services/library_injector.js",
       "scripts/services/fshare.js",
@@ -35,6 +36,7 @@
     "css": [
       "styles/vendor/popover.css",
       "styles/vendor/toastr.min.css",
+      "styles/vendor/jquery.modal.min.css",
       "styles/vendor/tui-grid.css",
       "styles/fshare.css"
     ]
@@ -44,6 +46,7 @@
     "resources": [
       "scripts/vendor/jquery.min.js",
       "scripts/vendor/toastr.min.js",
+      "scripts/vendor/jquery.modal.min.js",
       "scripts/vendor/tui-grid.js",
       "scripts/services/fshare.js",
       "scripts/services/fshare/file.js",
