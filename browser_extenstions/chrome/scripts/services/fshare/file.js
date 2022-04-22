@@ -104,8 +104,8 @@ class FshareFile extends Fshare {
     $.each($(whiteListTag), (i, tag) => {
       const element = $(tag);
 
-      const isAsALink = this.isFshareFileLink($.trim(element.attr('href')));
-      const isAsAText = this.isFshareFileLink($.trim(element.html()));
+      const isAsALink = this.isFshareLink($.trim(element.attr('href')));
+      const isAsAText = this.isFshareLink($.trim(element.html()));
 
       if (isAsALink || isAsAText) {
         totalFshareLinkCounter++;
@@ -119,7 +119,7 @@ class FshareFile extends Fshare {
           placement: 'top',
           trigger: 'hover',
           autoPlace: true,
-          content: this.popoverContent(fshareLink).join(' '),
+          content: this.popoverContentFshareLink(fshareLink).join(' '),
         });
 
         element.on('shown.bs.popover', () => {
@@ -133,17 +133,19 @@ class FshareFile extends Fshare {
     }
   }
 
-  popoverContent(fshareLink) {
+  popoverContentFshareLink(fshareLink) {
     const links = fshareLink.split('\n');
     const linkDescriptionClass = links.length <= 1 ? 'hide' : '';
 
     return $.map(links, (link) => {
+      const hideFshareFolderClass = this.isFshareFolderLink(link) ? 'hide' : '';
+
       return `
         <div class='fshare-popover-wrapper'>
           <span class='link-description ${linkDescriptionClass}'>#${this.fshareLinkCode(link)} - </span>
           <a class='fshare-popover-btn open' data-fshare-link='${link}'>Open</span>
-          <a class='fshare-popover-btn fshare-popover-action play' data-fshare-link='${link}'>Play</a>
-          <a class='fshare-popover-btn fshare-popover-action download' data-fshare-link='${link}'>Download</a>
+          <a class='fshare-popover-btn fshare-popover-action play ${hideFshareFolderClass}' data-fshare-link='${link}'>Play</a>
+          <a class='fshare-popover-btn fshare-popover-action download ${hideFshareFolderClass}' data-fshare-link='${link}'>Download</a>
         </div>
       `;
     });

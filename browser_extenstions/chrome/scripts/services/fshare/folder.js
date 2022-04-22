@@ -248,7 +248,8 @@ class FshareFolder extends Fshare {
           success: function (data) {
             resolve(data);
           },
-          error: function () {
+          error: function (data) {
+            toastr.error(data.responseText);
             reject();
           },
         });

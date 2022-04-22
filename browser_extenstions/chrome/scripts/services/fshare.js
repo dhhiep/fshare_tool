@@ -68,8 +68,12 @@ class Fshare {
     return /https:\/\/.*fshare.vn\/folder\//.test(location.href);
   }
 
-  isFshareFileLink(url) {
-    return /^https:\/\/.*fshare.vn\/file\//.test(url);
+  isFshareLink(url) {
+    return /^https:\/\/.*fshare.vn\/(file|folder)\//.test(url);
+  }
+
+  isFshareFolderLink(url) {
+    return /https:\/\/.*fshare.vn\/folder\//.test(url);
   }
 
   currentFshareLinkCode() {
