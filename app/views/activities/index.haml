@@ -13,6 +13,13 @@
         .card
           .card-header
             %h3.card-title Activities
+          .card-body.py-3
+            .d-flex
+              .ms-auto.text-muted
+                = search_form_for @q do |form|
+                  Search:
+                  .ms-2.d-inline-block
+                    = form.text_field :file_name_cont, placeholder: 'Name', class: 'form-control form-control-sm'
           .card-body.border-bottom.py-3
             .row.g-2.align-items-center.mb-n3
               .col-6.col-sm-2.col-md-1
@@ -28,8 +35,8 @@
               %thead
                 %tr
                   %th{width: '10px'} Action
-                  %th File Name
-                  %th{width: '10px'} File Ext
+                  %th Name
+                  %th{width: '10px'} Ext
                   %th{width: '10px'} At
                   %th
               %tbody
