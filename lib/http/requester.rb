@@ -16,21 +16,21 @@ module Http
     def make_request
       response =
         Http::Exceptions.wrap_and_check do
-          HTTParty.send(http_verb, url, build_params_headers)
+          HTTParty.send(http_verb, url, request_params)
         end
 
-      Responder.new(response)
+      Responder.new(response, request_params: request_params)
     rescue Http::Exceptions::HttpException => e
       responder =
         if e.respond_to?(:response) && !e.response&.body.nil? && !e.response&.body&.empty?
-          Responder.new(e.response)
+          Responder.new(e.response, request_params: request_params)
         else
-          Responder.new({ code: 503, body: { message: e.to_s } })
+          Responder.new({ code: 503, body: { message: e.to_s } }, request_params: request_params)
         end
 
       capture_error(responder)
     rescue StandardError => e
-      responder = Responder.new({ code: 500, body: { message: e.to_s } })
+      responder = Responder.new({ code: 500, body: { message: e.to_s } }, request_params: request_params)
 
       capture_error(responder)
     end
@@ -49,6 +49,10 @@ module Http
 
     def request_timeout
       (options[:timeout].presence || 30).to_i
+    end
+
+    def request_params
+      @request_params ||= build_params_headers
     end
 
     def build_params_headers

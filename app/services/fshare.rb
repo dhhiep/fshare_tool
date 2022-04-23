@@ -60,6 +60,7 @@ class Fshare
     url = 'https://www.fshare.vn/api/v3/files/folder'
     body = {
       linkcode: list_id,
+      url: url_builder(list_id, type: 'folder'),
       sort: options[:sort_by] || 'type,name',
       page: page,
       'per-page': per_page

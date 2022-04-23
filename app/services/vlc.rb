@@ -16,12 +16,18 @@ class Vlc
     def fshare_play_or_add_subtitle(video_or_subtitle_id)
       fshare = Fshare.new
       fshare.login!
-      fshare_file_url = fshare.direct_link(video_or_subtitle_id).body[:location]
+      response = fshare.direct_link(video_or_subtitle_id)
+      direct_link_url = response.body[:location]
 
-      return play_video(fshare_file_url) if video?(fshare_file_url)
-      return add_subtitle(fshare_file_url) if subtitle?(fshare_file_url)
+      if video?(direct_link_url)
+        play_video(direct_link_url)
+      elsif subtitle?(direct_link_url)
+        add_subtitle(direct_link_url)
+      else
+        raise Error::GatewayError, { message: 'File extension invalid!', details: direct_link_url.to_s.split('/').last }
+      end
 
-      raise Error::GatewayError, { message: 'File extension invalid!', details: fshare_file_url }
+      response
     rescue => e
       raise Error::GatewayError, { message: 'VLC play failure!', details: e.message }
     end

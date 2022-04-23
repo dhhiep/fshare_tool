@@ -2,9 +2,10 @@
 
 module Http
   class Responder
-    attr_reader :response
+    attr_reader :response, :request_params
 
-    def initialize(response)
+    def initialize(response, request_params: {})
+      @request_params = request_params
       @response = response.is_a?(Hash) ? OpenStruct.new(response) : response
     end
 
