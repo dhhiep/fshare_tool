@@ -1,0 +1,7 @@
+#setting {
+  width: 500px;
+}
+
+#setting .alert-success{
+  display: none;
+}

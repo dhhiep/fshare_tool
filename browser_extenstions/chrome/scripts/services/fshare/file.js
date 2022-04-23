@@ -145,9 +145,14 @@ class FshareFile extends Fshare {
       }
     });
 
-    if (totalFshareLinkCounter > 0) {
-      toastr.success(`Scan Fshare Link is finished. Total Fshare Links: ${totalFshareLinkCounter}`);
-    }
+    this.settings((data) => {
+      var tagTmp = document.createElement('a');
+      tagTmp.href = data.settings.serverUrl;
+
+      if (totalFshareLinkCounter > 0 && tagTmp.host !== location.host) {
+        toastr.success(`Scan Fshare Link is finished. Total Fshare Links: ${totalFshareLinkCounter}`);
+      }
+    });
   }
 
   xpopoverContentFshareLink(fshareLink) {

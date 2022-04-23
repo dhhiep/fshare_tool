@@ -7,13 +7,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log('[Fshare Tool] Message received! request:', request);
 
   switch (request.cmd) {
-    // case 'exampleAttachLogic':
-    //   chrome.scripting.executeScript({
-    //     target: { tabId: sender.tab.id },
-    //     files: ['scripts/services/logic.js'],
-    //   });
-
-    //   break;
+    case 'attachLogic':
+      //   chrome.scripting.executeScript({
+      //     target: { tabId: sender.tab.id },
+      //     files: ['scripts/services/logic.js'],
+      //   });
+      break;
     case 'addContextMenus':
       contextMenusHandler(sender.tab);
       break;
@@ -23,40 +22,47 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
+// handle contextMenus interactions
+chrome.contextMenus.onClicked.addListener((menu) => {
+  console.log('[Fshare Tool] Menu selected:', menu);
+  switch (menu.menuItemId) {
+    case 'context_menu_rescan_fshare_links':
+      chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        chrome.scripting.executeScript({
+          target: { tabId: tabs[0].id },
+          function: () => {
+            FshareFile.scanFshareLink();
+            toastr.success('Re-scan Fshare Links was successfully!');
+          },
+        });
+      });
+      break;
+    case 'context_menu_open_activities_page':
+      chrome.storage.sync.get(['settings'], (data) => {
+        const settings = data.settings;
+        console.log('[Fshare Tool] Settings:', settings);
+        chrome.windows.create({ url: settings.serverUrl, type: 'popup' });
+      });
+      break;
+  }
+});
+
 // PRIVATE
 
-const contextMenusHandler = (tab) => {
+const contextMenusHandler = () => {
   // don't try to duplicate this menu item
   chrome.contextMenus.removeAll();
 
   // create a menu
   chrome.contextMenus.create({
-    title: 'Re-scan Fshare Links',
-    id: 'context_menu_rescan_fshare_links',
+    title: 'View Activities',
+    id: 'context_menu_open_activities_page',
     contexts: ['all'],
   });
 
-  // chrome.contextMenus.create({
-  //   title: 'Health Check',
-  //   id: 'context_menu_health_check',
-  //   contexts: ['all'],
-  // });
-
-  // handle interactions
-  chrome.contextMenus.onClicked.addListener((menu) => {
-    console.log('[Fshare Tool] Menu selected:', menu);
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      chrome.scripting.executeScript({
-        target: { tabId: tabs[0].id },
-        function: () => {
-          FshareFile.scanFshareLink();
-          toastr.success('Re-scan Fshare Links was successfully!');
-        },
-      });
-
-      // chrome.tabs.sendMessage(tabs[0].id, {
-      //   msg: 'Greetings from your Test V3 context menu',
-      // });
-    });
+  chrome.contextMenus.create({
+    title: 'Re-scan Fshare Links',
+    id: 'context_menu_rescan_fshare_links',
+    contexts: ['all'],
   });
 };
