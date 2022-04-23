@@ -1,22 +1,22 @@
-.popover {
+.xpopover {
   display: inline-block;
   *display: inline;
   *zoom: 1;
   position: relative; }
-  .popover .popover-container {
+  .xpopover .xpopover-container {
     display: inline-block;
     *display: inline;
     *zoom: 1;
     position: relative;
     padding: 8px; }
-    .popover .popover-container .popover-inner {
+    .xpopover .xpopover-container .xpopover-inner {
       display: block;
       background-color: #fff;
       border-radius: 4px;
       -webkit-box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.15);
       -moz-box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.15);
       box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.15); }
-      .popover .popover-container .popover-inner .popover-title {
+      .xpopover .xpopover-container .xpopover-inner .xpopover-title {
         font-size: 14px;
         min-width: 177px;
         min-height: 32px;
@@ -24,11 +24,11 @@
         padding: 5px 16px 4px;
         border-bottom: 1px solid #eeeeee;
         color: #262626; }
-      .popover .popover-container .popover-inner .popover-content {
+      .xpopover .xpopover-container .xpopover-inner .xpopover-content {
         font-size: 14px;
         padding: 12px 16px;
         color: #8C8C8C; }
-    .popover .popover-container .popover-arrow {
+    .xpopover .xpopover-container .xpopover-arrow {
       display: block;
       position: absolute;
       -o-transform: rotate(45deg);
@@ -36,7 +36,7 @@
       -moz-transform: rotate(45deg);
       -webkit-transform: rotate(45deg);
       transform: rotate(45deg); }
-  .popover.popover-top .popover-container .popover-arrow {
+  .xpopover.xpopover-top .xpopover-container .xpopover-arrow {
     top: auto;
     right: auto;
     bottom: 4px;
@@ -52,7 +52,7 @@
     -webkit-box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .popover.popover-topLeft .popover-container .popover-arrow {
+  .xpopover.xpopover-topLeft .xpopover-container .xpopover-arrow {
     top: auto;
     right: auto;
     bottom: 4px;
@@ -68,7 +68,7 @@
     -webkit-box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .popover.popover-topRight .popover-container .popover-arrow {
+  .xpopover.xpopover-topRight .xpopover-container .xpopover-arrow {
     top: auto;
     right: 24px;
     bottom: 4px;
@@ -84,7 +84,7 @@
     -webkit-box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .popover.popover-rightTop .popover-container .popover-arrow {
+  .xpopover.xpopover-rightTop .xpopover-container .xpopover-arrow {
     top: 20px;
     right: auto;
     bottom: auto;
@@ -100,7 +100,7 @@
     -webkit-box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .popover.popover-right .popover-container .popover-arrow {
+  .xpopover.xpopover-right .xpopover-container .xpopover-arrow {
     top: 50%;
     right: auto;
     bottom: auto;
@@ -116,7 +116,7 @@
     -webkit-box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .popover.popover-rightBottom .popover-container .popover-arrow {
+  .xpopover.xpopover-rightBottom .xpopover-container .xpopover-arrow {
     top: auto;
     right: auto;
     bottom: 20px;
@@ -132,7 +132,7 @@
     -webkit-box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .popover.popover-bottomLeft .popover-container .popover-arrow {
+  .xpopover.xpopover-bottomLeft .xpopover-container .xpopover-arrow {
     top: 4px;
     right: auto;
     bottom: auto;
@@ -148,7 +148,7 @@
     -webkit-box-shadow: -3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: -3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: -3px -3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .popover.popover-bottom .popover-container .popover-arrow {
+  .xpopover.xpopover-bottom .xpopover-container .xpopover-arrow {
     top: 4px;
     right: auto;
     bottom: auto;
@@ -164,7 +164,7 @@
     -webkit-box-shadow: -3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: -3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: -3px -3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .popover.popover-bottomRight .popover-container .popover-arrow {
+  .xpopover.xpopover-bottomRight .xpopover-container .xpopover-arrow {
     top: 4px;
     right: 24px;
     bottom: auto;
@@ -180,7 +180,7 @@
     -webkit-box-shadow: -3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: -3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: -3px -3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .popover.popover-leftTop .popover-container .popover-arrow {
+  .xpopover.xpopover-leftTop .xpopover-container .xpopover-arrow {
     top: 20px;
     right: 4px;
     bottom: auto;
@@ -196,7 +196,7 @@
     -webkit-box-shadow: 3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: 3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: 3px -3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .popover.popover-left .popover-container .popover-arrow {
+  .xpopover.xpopover-left .xpopover-container .xpopover-arrow {
     top: 50%;
     right: 4px;
     bottom: auto;
@@ -212,7 +212,7 @@
     -webkit-box-shadow: 3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: 3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: 3px -3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .popover.popover-leftBottom .popover-container .popover-arrow {
+  .xpopover.xpopover-leftBottom .xpopover-container .xpopover-arrow {
     top: auto;
     right: 4px;
     bottom: 20px;

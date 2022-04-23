@@ -3,32 +3,32 @@
 }
 
 /* NON-FSHARE PAGE*/
-.popover-title {
+.xpopover-title {
   display: none;
 }
 
-.popover .popover-container  {
+.xpopover .xpopover-container  {
   z-index: 999;
 }
 
-.popover .popover-container .popover-inner .popover-content {
+.xpopover .xpopover-container .xpopover-inner .xpopover-content {
   display: flex;
   padding: 5px 15px;
   flex-direction: column;
 }
 
-.popover-content .fshare-popover-wrapper {
+.xpopover-content .fshare-xpopover-wrapper {
   display: flex;
   align-items: center;
 }
 
-.popover-content .fshare-popover-wrapper .link-description {
+.xpopover-content .fshare-xpopover-wrapper .link-description {
   color: #146152;
   font-size: 17px;
   font-family: arial;
 }
 
-.popover-content .fshare-popover-wrapper .fshare-popover-btn {
+.xpopover-content .fshare-xpopover-wrapper .fshare-xpopover-btn {
   color: #fff;
   text-decoration: none;
   margin: 5px 5px;
@@ -38,19 +38,19 @@
   cursor: pointer;
 }
 
-.popover-content .fshare-popover-wrapper .fshare-popover-btn.play {
+.xpopover-content .fshare-xpopover-wrapper .fshare-xpopover-btn.play {
   background: #44803F;
 }
 
-.popover-content .fshare-popover-wrapper .fshare-popover-btn.download {
+.xpopover-content .fshare-xpopover-wrapper .fshare-xpopover-btn.download {
   background: #146152;
 }
 
-.popover-content .fshare-popover-wrapper .fshare-popover-btn.copy-direct-link {
+.xpopover-content .fshare-xpopover-wrapper .fshare-xpopover-btn.copy-direct-link {
   background: #861313;
 }
 
-.popover-content .fshare-popover-wrapper .fshare-popover-btn.open {
+.xpopover-content .fshare-xpopover-wrapper .fshare-xpopover-btn.open {
   background: #FF5A33;
 }
 

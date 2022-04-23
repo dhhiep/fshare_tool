@@ -131,16 +131,16 @@ class FshareFile extends Fshare {
         // Prevent link redirect
         element.click((event) => event.preventDefault());
 
-        element.popover({
+        element.xpopover({
           delay: 100,
           placement: 'top',
           trigger: 'hover',
           autoPlace: true,
-          content: this.popoverContentFshareLink(fshareLink).join(' '),
+          content: this.xpopoverContentFshareLink(fshareLink).join(' '),
         });
 
-        element.on('shown.bs.popover', () => {
-          setTimeout(() => element.popover('hide'), 2000);
+        element.on('shown.bs.xpopover', () => {
+          setTimeout(() => element.xpopover('hide'), 2000);
         });
       }
     });
@@ -150,7 +150,7 @@ class FshareFile extends Fshare {
     }
   }
 
-  popoverContentFshareLink(fshareLink) {
+  xpopoverContentFshareLink(fshareLink) {
     const links = fshareLink.split('\n');
     const linkDescriptionClass = links.length <= 1 ? 'hide' : '';
 
@@ -158,12 +158,12 @@ class FshareFile extends Fshare {
       const hideFshareFolderClass = this.isFshareFolderLink(link) ? 'hide' : '';
 
       return `
-        <div class='fshare-popover-wrapper'>
+        <div class='fshare-xpopover-wrapper'>
           <span class='link-description ${linkDescriptionClass}'>#${this.fshareLinkCode(link)} - </span>
-          <a class='fshare-popover-btn open' data-fshare-link='${link}'>Open</span>
-          <a class='fshare-popover-btn fshare-popover-action play ${hideFshareFolderClass}' data-fshare-link='${link}'>Play</a>
-          <a class='fshare-popover-btn fshare-popover-action download ${hideFshareFolderClass}' data-fshare-link='${link}'>Download</a>
-          <a class='fshare-popover-btn fshare-popover-action copy-direct-link ${hideFshareFolderClass}' data-fshare-link='${link}'>Copy Direct Link</a>
+          <a class='fshare-xpopover-btn open' data-fshare-link='${link}'>Open</span>
+          <a class='fshare-xpopover-btn fshare-xpopover-action play ${hideFshareFolderClass}' data-fshare-link='${link}'>Play</a>
+          <a class='fshare-xpopover-btn fshare-xpopover-action download ${hideFshareFolderClass}' data-fshare-link='${link}'>Download</a>
+          <a class='fshare-xpopover-btn fshare-xpopover-action copy-direct-link ${hideFshareFolderClass}' data-fshare-link='${link}'>Copy Direct Link</a>
         </div>
       `;
     });
