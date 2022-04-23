@@ -34,6 +34,15 @@ gem 'down', '~> 5.0'
 # Makes http request
 gem 'httparty', '~> 0.18'
 
+# Object-based searching.
+gem 'ransack', '~> 2.4'
+
+# HTML Abstraction Markup Language - A Markup Haiku
+gem 'haml', '~> 5.2'
+
+# Paginator for Rails
+gem 'kaminari', '~> 0.17'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

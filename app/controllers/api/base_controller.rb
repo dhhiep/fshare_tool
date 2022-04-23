@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Api
-  class BaseController < ApplicationController
+  class BaseController < ActionController::API
     include Error::ExceptionErrorBuilder
 
     rescue_from Error::GatewayError, with: :gateway_error

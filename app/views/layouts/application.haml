@@ -1,0 +1,35 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1, viewport-fit=cover", :name => "viewport"}/
+    %meta{:content => "ie=edge", "http-equiv" => "X-UA-Compatible"}/
+    %title Fshare Tool
+    / Favicon
+    = favicon_link_tag asset_path('favicon-32x32.png')
+    = favicon_link_tag asset_path('favicon-16x16.png')
+    / CSS files
+    %link{:href => "dist/css/tabler.min.css?1650497181", :rel => "stylesheet"}/
+    %link{:href => "dist/css/style.css", :rel => "stylesheet"}/
+  %body.layout-boxed
+    .page
+      = render 'shared/layout/top_nav'
+      = render 'shared/layout/main_nav'
+      .page-wrapper
+        = yield
+        %footer.footer.footer-transparent.d-print-none
+          .container-xl
+            .row.text-center.align-items-center.flex-row-reverse
+              .col-lg-auto.ms-lg-auto
+                %ul.list-inline.list-inline-dots.mb-0
+                  %li.list-inline-item
+                    %a.link-secondary{:href => "https://github.com/dhhiep/fshare_tool/blob/master/README.md"} Documentation
+                  %li.list-inline-item
+                    %a.link-secondary{:href => "https://github.com/dhhiep/fshare_tool", :rel => "noopener", :target => "_blank"} Source code
+              .col-12.col-lg-auto.mt-3.mt-lg-0
+                %ul.list-inline.list-inline-dots.mb-0
+                  %li.list-inline-item
+                    = "Copyright © #{Time.current.strftime('%Y')}"
+                    = succeed "." do
+                      %a.link-secondary{:href => "https://github.com/dhhiep"} Hiep Dinh
+    %script{:defer => "defer", :src => "dist/js/tabler.min.js?1650497181"}

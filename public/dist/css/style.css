@@ -1,0 +1,17 @@
+.navbar h1.logo a {
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+}
+
+.navbar h1.logo a img {
+  margin-right: 5px;
+}
+
+.toast-success {
+  background-color: #36842f;
+}
+
+.toast-error {
+  background-color: #cb3b1b;
+}
