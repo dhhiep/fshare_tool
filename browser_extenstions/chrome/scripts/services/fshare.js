@@ -32,6 +32,15 @@ class Fshare {
           });
         }
 
+        if (element.hasClass('share-lan-link')) {
+          console.log('share-lan-link', fshareLinkCode);
+          FshareFile.lanLink(fshareLinkCode).then((link) => {
+            console.log('lanLink', link);
+            navigator.clipboard.writeText(link);
+            toastr.success(`LAN Link ${link} has been copied to clipboard`);
+          });
+        }
+
         if (element.hasClass('open')) {
           window.open(fshareLink);
         }

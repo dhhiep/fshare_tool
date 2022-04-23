@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :fshare, only: [] do
         member do
           get :play
+          get :lan_link, path: 'lan-link'
           get :direct_link, path: 'direct-link'
           get :list
           get :list_v3

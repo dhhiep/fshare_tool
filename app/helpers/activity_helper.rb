@@ -8,6 +8,8 @@ module ActivityHelper
         %w[bg-teal Play]
       when :direct_link
         %w[bg-orange Link]
+      when :shared_link
+        %w[bg-indigo Shared]
       when :list, :list_v3
         %w[bg-purple List]
       else

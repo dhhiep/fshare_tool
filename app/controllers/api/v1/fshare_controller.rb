@@ -3,6 +3,13 @@
 module Api
   module V1
     class FshareController < BaseController
+      def lan_link
+        response = fshare.direct_link(params[:id])
+        Activity.track_response(:shared_link, response) if response.success?
+
+        render html: "<a href='#{response.body[:location]}'>Click here to Download</a>".html_safe
+      end
+
       def direct_link
         response = fshare.direct_link(params[:id])
         Activity.track_response(:direct_link, response) if response.success?

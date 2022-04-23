@@ -15,6 +15,11 @@ class FshareFile extends Fshare {
     return fshareFile.directLink(fileId);
   }
 
+  static lanLink(fileId) {
+    const fshareFile = new FshareFile();
+    return fshareFile.lanLink(fileId);
+  }
+
   static openInVlc(fileId) {
     const fshareFile = new FshareFile();
     fshareFile.openInVlc(fileId);
@@ -47,6 +52,16 @@ class FshareFile extends Fshare {
       console.log('Downloading for ID', fileId);
 
       window.open(link);
+    });
+  }
+
+  lanLink(fileId) {
+    const self = this;
+
+    return new Promise(function (resolve, reject) {
+      self.settings((data) => {
+        resolve(`${data.settings.serverLANUrl}/api/v1/fshare/${fileId}/lan-link`);
+      });
     });
   }
 
@@ -102,6 +117,7 @@ class FshareFile extends Fshare {
             <li class="fshare-action download" data-fshare-link="${window.location.href}">Download</li>
             <li class="fshare-action play" data-fshare-link="${window.location.href}">Play in VLC</li>
             <li class="fshare-action copy-direct-link" data-fshare-link="${window.location.href}">Copy Direct Link</li>
+            <li class="fshare-action share-lan-link" data-fshare-link="${window.location.href}">Share LAN Link</li>
           </ul>
         </div>
       `;
@@ -169,6 +185,7 @@ class FshareFile extends Fshare {
           <a class='fshare-xpopover-btn fshare-xpopover-action play ${hideFshareFolderClass}' data-fshare-link='${link}'>Play</a>
           <a class='fshare-xpopover-btn fshare-xpopover-action download ${hideFshareFolderClass}' data-fshare-link='${link}'>Download</a>
           <a class='fshare-xpopover-btn fshare-xpopover-action copy-direct-link ${hideFshareFolderClass}' data-fshare-link='${link}'>Copy Direct Link</a>
+          <a class='fshare-xpopover-btn fshare-xpopover-action share-lan-link ${hideFshareFolderClass}' data-fshare-link='${link}'>Copy Direct Link</a>
         </div>
       `;
     });

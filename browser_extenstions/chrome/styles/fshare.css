@@ -57,6 +57,7 @@
 /* FSHARE FILE PAGE */
 #fshare-file-actions {
   width: auto;
+  max-width: 800px;
 }
 
 #fshare-file-actions ul {
@@ -88,6 +89,10 @@
 
 #fshare-file-actions ul li.copy-direct-link {
   background: #861313;
+}
+
+#fshare-file-actions ul li.share-lan-link {
+  background: #801eaa;
 }
 
 /* FSHARE FOLDER PAGE */

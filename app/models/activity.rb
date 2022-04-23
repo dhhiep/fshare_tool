@@ -3,6 +3,7 @@
 class Activity < ApplicationRecord
   ACTIONS = %i[
     play
+    shared_link
     direct_link
     list
     list_v3
