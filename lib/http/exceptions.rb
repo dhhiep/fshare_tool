@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'http/exceptions/configuration'
-require 'http/exceptions/http_exception'
-
 module Http
   module Exceptions
     def self.wrap_exception

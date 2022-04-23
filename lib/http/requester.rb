@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'httparty'
-require 'http/exceptions'
-
 module Http
   class Requester
     def self.make_request(http_verb, url, body = {}, options = {})

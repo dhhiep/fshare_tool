@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'httparty'
-
 module Http
   class Responder
     attr_reader :response
