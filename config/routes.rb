@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       resources :fshare, only: [] do
         member do
           get :play
-          get :download
+          get :direct_link, path: 'direct-link'
           get :list
           get :list_v3
         end

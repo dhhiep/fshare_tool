@@ -46,13 +46,17 @@
   background: #146152;
 }
 
+.popover-content .fshare-popover-wrapper .fshare-popover-btn.copy-direct-link {
+  background: #861313;
+}
+
 .popover-content .fshare-popover-wrapper .fshare-popover-btn.open {
   background: #FF5A33;
 }
 
 /* FSHARE FILE PAGE */
 #fshare-file-actions {
-  width: 300px;
+  width: auto;
 }
 
 #fshare-file-actions ul {
@@ -80,6 +84,10 @@
 
 #fshare-file-actions ul li.play {
   background: #44803F;
+}
+
+#fshare-file-actions ul li.copy-direct-link {
+  background: #861313;
 }
 
 /* FSHARE FOLDER PAGE */

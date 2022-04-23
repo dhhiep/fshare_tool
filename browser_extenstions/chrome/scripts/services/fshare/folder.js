@@ -160,16 +160,26 @@ class FshareFolder extends Fshare {
   }
 
   contextMenu(tree, rowKey) {
-    const { linkcode, furl } = tree.getRow(rowKey);
+    const { linkcode, furl, name } = tree.getRow(rowKey);
 
     return [
       [
         {
-          name: 'copyToClipboard',
+          name: 'copyLinkCodeToClipboard',
           label: 'Copy Code to clipboard',
           action: () => {
             navigator.clipboard.writeText(linkcode);
-            toastr.success(`Code ${linkcode} has been copied to clipboard`);
+            toastr.success(`Link Code ${linkcode} has been copied to clipboard`);
+          },
+        },
+        {
+          name: 'copyDirectLinkToClipboard',
+          label: 'Copy Direct Link to clipboard',
+          action: () => {
+            FshareFile.directLink(linkcode).then((link) => {
+              navigator.clipboard.writeText(link);
+              toastr.success(`Direct Link ${name} has been copied to clipboard`);
+            });
           },
         },
       ],

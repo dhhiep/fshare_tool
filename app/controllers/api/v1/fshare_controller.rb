@@ -3,7 +3,7 @@
 module Api
   module V1
     class FshareController < BaseController
-      def download
+      def direct_link
         result = fshare.direct_link(params[:id])
 
         render json: result.body, code: result.code

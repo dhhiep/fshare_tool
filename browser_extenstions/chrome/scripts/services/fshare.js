@@ -24,6 +24,14 @@ class Fshare {
           FshareFile.download(fshareLinkCode);
         }
 
+        if (element.hasClass('copy-direct-link')) {
+          FshareFile.directLink(fshareLinkCode).then((link) => {
+            navigator.clipboard.writeText(link);
+            const fileName = link.split('/').pop();
+            toastr.success(`Direct Link ${fileName} has been copied to clipboard`);
+          });
+        }
+
         if (element.hasClass('open')) {
           window.open(fshareLink);
         }

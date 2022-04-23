@@ -10,6 +10,11 @@ class FshareFile extends Fshare {
     fshareFile.download(fileId);
   }
 
+  static directLink(fileId) {
+    const fshareFile = new FshareFile();
+    return fshareFile.directLink(fileId);
+  }
+
   static openInVlc(fileId) {
     const fshareFile = new FshareFile();
     fshareFile.openInVlc(fileId);
@@ -38,22 +43,33 @@ class FshareFile extends Fshare {
   }
 
   download(fileId) {
-    console.log('Downloading for ID', fileId);
+    this.directLink(fileId).then((link) => {
+      console.log('Downloading for ID', fileId);
 
-    this.settings((data) => {
-      $.ajax({
-        method: 'get',
-        url: `${data.settings.serverUrl}/api/v1/fshare/${fileId}/download`,
-        success: function (data) {
-          window.open(data.location.replace('http://', 'https://'));
-        },
-        error: (data) => {
-          if (data.statusText == 'error') {
-            this.healthCheck();
-          } else {
-            toastr.error(data.responseText);
-          }
-        },
+      window.open(link);
+    });
+  }
+
+  directLink(fileId) {
+    console.log('Get direct link for ID', fileId);
+    const self = this;
+
+    return new Promise(function (resolve, reject) {
+      self.settings((data) => {
+        $.ajax({
+          method: 'get',
+          url: `${data.settings.serverUrl}/api/v1/fshare/${fileId}/direct-link`,
+          success: function (data) {
+            resolve(data.location.replace('http://', 'https://'));
+          },
+          error: (data) => {
+            if (data.statusText == 'error') {
+              this.healthCheck();
+            } else {
+              toastr.error(data.responseText);
+            }
+          },
+        });
       });
     });
   }
@@ -85,6 +101,7 @@ class FshareFile extends Fshare {
           <ul>
             <li class="fshare-action download" data-fshare-link="${window.location.href}">Download</li>
             <li class="fshare-action play" data-fshare-link="${window.location.href}">Play in VLC</li>
+            <li class="fshare-action copy-direct-link" data-fshare-link="${window.location.href}">Copy Direct Link</li>
           </ul>
         </div>
       `;
@@ -146,6 +163,7 @@ class FshareFile extends Fshare {
           <a class='fshare-popover-btn open' data-fshare-link='${link}'>Open</span>
           <a class='fshare-popover-btn fshare-popover-action play ${hideFshareFolderClass}' data-fshare-link='${link}'>Play</a>
           <a class='fshare-popover-btn fshare-popover-action download ${hideFshareFolderClass}' data-fshare-link='${link}'>Download</a>
+          <a class='fshare-popover-btn fshare-popover-action copy-direct-link ${hideFshareFolderClass}' data-fshare-link='${link}'>Copy Direct Link</a>
         </div>
       `;
     });
