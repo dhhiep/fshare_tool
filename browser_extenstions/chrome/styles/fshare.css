@@ -54,6 +54,10 @@
   background: #FF5A33;
 }
 
+.xpopover-content .fshare-xpopover-wrapper .fshare-xpopover-btn.share-lan-link {
+  background: #801eaa;
+}
+
 /* FSHARE FILE PAGE */
 #fshare-file-actions {
   width: auto;
