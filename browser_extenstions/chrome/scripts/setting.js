@@ -14,10 +14,15 @@ $('form#setting').submit((e) => {
   const formData = buildFormData(e.target);
   console.log('[Fshare Tool] Form Data:', formData);
 
-  chrome.storage.sync.set({ settings: formData });
-  $('form#setting #form-alert').show();
-  $('form#setting #form-alert .alert-title').text('Setting has been saved!');
-  $('form#setting #form-alert .text-muted').html(`<hr><pre>${JSON.stringify(formData, null, 2)}</pre>`);
+  getLocalIp().then((localIP) => {
+    formData.serverLANUrl = formData.serverUrl.replace(/localhost|127\.0\.0\.1/, localIP);
+
+    chrome.storage.sync.set({ settings: formData });
+
+    $('form#setting #form-alert').show();
+    $('form#setting #form-alert .alert-title').text('Setting has been saved!');
+    $('form#setting #form-alert .text-muted').html(`<hr><pre>${JSON.stringify(formData, null, 2)}</pre>`);
+  });
 });
 
 $('#view-activities').click((e) => {
@@ -41,10 +46,28 @@ const buildFormData = (form) => {
     }, {});
 };
 
-function camelize(str) {
+const camelize = (str) => {
   return str
     .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
       return index === 0 ? word.toLowerCase() : word.toUpperCase();
     })
     .replace(/\s+/g, '');
-}
+};
+
+const getLocalIp = () => {
+  return new Promise((resolve, reject) => {
+    window.RTCPeerConnection =
+      window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection; //compatibility for Firefox and chrome
+    const pc = new RTCPeerConnection({ iceServers: [] }),
+      noop = function () {};
+    pc.createDataChannel(''); //create a bogus data channel
+    pc.createOffer(pc.setLocalDescription.bind(pc), noop); // create offer and set local description
+    pc.onicecandidate = function (ice) {
+      if (ice && ice.candidate && ice.candidate.candidate) {
+        const myIP = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
+        resolve(myIP);
+        pc.onicecandidate = noop;
+      }
+    };
+  });
+};
