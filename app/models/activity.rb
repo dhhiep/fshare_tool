@@ -1,10 +1,26 @@
 # frozen_string_literal: true
 
 class Activity < ApplicationRecord
+  ACTIONS = %i[
+    play
+    direct_link
+    list
+    list_v3
+  ].freeze
+
+  FILE_TYPES = %i[
+    folder
+    subtitle
+    video
+    file
+  ].freeze
+
   before_validation :set_file_type
 
   class << self
     def track_response(type, response)
+      return if Activity::ACTIONS.exclude?(type)
+
       request_data = parse_request_data(response)
       direct_url = response.body[:location]
       activity_data = {

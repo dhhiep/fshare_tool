@@ -1,3 +1,7 @@
+.hide {
+  display: none !important;
+}
+
 .navbar h1.logo a {
   display: flex;
   align-items: center;

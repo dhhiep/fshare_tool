@@ -1,0 +1,70 @@
+.container-xl
+  .page-header.d-print-none
+    .row.g-2.align-items-center
+      .col
+        .page-pretitle
+          Overview
+        %h2.page-title
+          Activities
+.page-body
+  .container-xl
+    .row.row-deck.row-cards
+      .col-12
+        .card
+          .card-header
+            %h3.card-title Activities
+          .card-body.border-bottom.py-3
+            .row.g-2.align-items-center.mb-n3
+              .col-6.col-sm-2.col-md-1
+                = link_to 'ALL', activities_path, class: 'btn btn-outline-secondary w-100'
+              .col-6.col-sm-2.col-md-1
+                = link_to 'PLAY', activities_path(q: { action_eq: :play }), class: 'btn btn-outline-success w-100'
+              .col-6.col-sm-2.col-md-1
+                = link_to 'LINK', activities_path(q: { action_eq: :direct_link }), class: 'btn btn-outline-warning w-100'
+              .col-6.col-sm-2.col-md-1
+                = link_to 'LIST', activities_path(q: { action_in: [:list, :list_v3] }), class: 'btn btn-outline-info w-100'
+          .table-responsive
+            %table.table.card-table.table-vcenter.text-nowrap.datatable
+              %thead
+                %tr
+                  %th{width: '10px'} Action
+                  %th File Name
+                  %th{width: '10px'} File Ext
+                  %th{width: '10px'} At
+                  %th
+              %tbody
+                - @activities.each do |activity|
+                  %tr
+                    %td= display_activity_action(activity.action).html_safe
+                    %td= link_to activity.file_name, activity.url
+                    %td= display_activity_file_ext(activity).html_safe
+                    %td= activity.created_at.strftime('%d/%m/%Y %H:%M:%S')
+                    %td
+          .card-footer.d-flex.align-items-center
+            %p.m-0.text-muted
+              Total
+              %span= @activities.total_count
+              entries
+            %ul.pagination.m-0.ms-auto.hide
+              %li.page-item.disabled
+                %a.page-link{"aria-disabled" => "true", :href => "#", :tabindex => "-1"}
+                  %svg.icon{:fill => "none", :height => "24", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2", :viewbox => "0 0 24 24", :width => "24", :xmlns => "http://www.w3.org/2000/svg"}
+                    %path{:d => "M0 0h24v24H0z", :fill => "none", :stroke => "none"}
+                    %polyline{:points => "15 6 9 12 15 18"}
+                  prev
+              %li.page-item
+                %a.page-link{:href => "#"} 1
+              %li.page-item.active
+                %a.page-link{:href => "#"} 2
+              %li.page-item
+                %a.page-link{:href => "#"} 3
+              %li.page-item
+                %a.page-link{:href => "#"} 4
+              %li.page-item
+                %a.page-link{:href => "#"} 5
+              %li.page-item
+                %a.page-link{:href => "#"}
+                  next
+                  %svg.icon{:fill => "none", :height => "24", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2", :viewbox => "0 0 24 24", :width => "24", :xmlns => "http://www.w3.org/2000/svg"}
+                    %path{:d => "M0 0h24v24H0z", :fill => "none", :stroke => "none"}
+                    %polyline{:points => "9 6 15 12 9 18"}
