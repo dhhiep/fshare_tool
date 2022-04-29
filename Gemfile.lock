@@ -85,6 +85,9 @@ GEM
     et-orbi (1.2.6)
       tzinfo
     ffi (1.15.4)
+    ffi (1.15.4-java)
+    ffi (1.15.4-x64-mingw32)
+    ffi (1.15.4-x86-mingw32)
     foreman (0.87.2)
     fugit (1.5.2)
       et-orbi (~> 1.1, >= 1.1.8)
@@ -119,19 +122,34 @@ GEM
     mini_portile2 (2.6.1)
     minitest (5.14.4)
     msgpack (1.4.2)
+    msgpack (1.4.2-java)
     multi_xml (0.6.0)
     nio4r (2.5.8)
+    nio4r (2.5.8-java)
     nokogiri (1.12.5)
       mini_portile2 (~> 2.6.1)
+      racc (~> 1.4)
+    nokogiri (1.12.5-java)
+      racc (~> 1.4)
+    nokogiri (1.12.5-x64-mingw32)
+      racc (~> 1.4)
+    nokogiri (1.12.5-x86-mingw32)
       racc (~> 1.4)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    pry (0.14.1-java)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+      spoon (~> 0.0)
     public_suffix (4.0.6)
     puma (5.5.2)
       nio4r (~> 2.0)
+    puma (5.5.2-java)
+      nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.6.0)
+    racc (1.6.0-java)
     rack (2.2.3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
@@ -171,8 +189,11 @@ GEM
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    retryable (3.0.5)
     rufus-scheduler (3.8.1)
       fugit (~> 1.1, >= 1.1.6)
+    spoon (0.0.6)
+      ffi
     spring (3.0.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -187,13 +208,21 @@ GEM
     tilt (2.0.10)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2022.1)
+      tzinfo (>= 1.0.0)
     websocket-driver (0.7.5)
+      websocket-extensions (>= 0.1.0)
+    websocket-driver (0.7.5-java)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     zeitwerk (2.5.1)
 
 PLATFORMS
+  java
   ruby
+  x64-mingw32
+  x86-mingw32
+  x86-mswin32
 
 DEPENDENCIES
   bootsnap (>= 1.4.4)
@@ -211,6 +240,7 @@ DEPENDENCIES
   rack-cors (~> 1.1)
   rails (~> 6.1.4)
   ransack (~> 2.4)
+  retryable (~> 3.0)
   rufus-scheduler (~> 3.8)
   spring
   sqlite3 (~> 1.4)

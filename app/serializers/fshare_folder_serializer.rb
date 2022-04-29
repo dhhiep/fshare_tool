@@ -49,10 +49,10 @@ class FshareFolderSerializer
   end
 
   def video?(row)
-    Vlc::VIDEO_EXTENSIONS.include?(file_ext(row).downcase)
+    Vlc::Player::VIDEO_EXTENSIONS.include?(file_ext(row).downcase)
   end
 
   def subtitle?(row)
-    Vlc::SUBTITLE_EXTENSIONS.include?(file_ext(row).downcase)
+    Vlc::Player::SUBTITLE_EXTENSIONS.include?(file_ext(row).downcase)
   end
 end

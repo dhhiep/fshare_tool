@@ -72,9 +72,9 @@ class Activity < ApplicationRecord
     self.file_type =
       if file_ext.blank?
         'folder'
-      elsif Vlc::SUBTITLE_EXTENSIONS.include?(file_ext)
+      elsif Vlc::Player::SUBTITLE_EXTENSIONS.include?(file_ext)
         'subtitle'
-      elsif Vlc::VIDEO_EXTENSIONS.include?(file_ext)
+      elsif Vlc::Player::VIDEO_EXTENSIONS.include?(file_ext)
         'video'
       else
         'file'

@@ -40,7 +40,7 @@ module Api
       end
 
       def play
-        response = Vlc.fshare_play_or_add_subtitle(params[:id])
+        response = Vlc::Player.fshare_play_or_add_subtitle(params[:id])
         Activity.track_response(:play, response) if response.success?
 
         render json: { message: 'VLC playing ...' }, status: :ok

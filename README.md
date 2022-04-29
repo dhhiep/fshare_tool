@@ -13,7 +13,7 @@ cd fshare_tool
 cp .env.template .env
 [REPLACE YOUR KEY TO .env]
 rake db:create db:migrate db:seed
-rails s --port 7777
+foreman start
 ```
 
 *Check your server ready:*
