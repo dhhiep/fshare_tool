@@ -185,7 +185,7 @@ class FshareFile extends Fshare {
           <a class='fshare-xpopover-btn fshare-xpopover-action play ${hideFshareFolderClass}' data-fshare-link='${link}'>Play</a>
           <a class='fshare-xpopover-btn fshare-xpopover-action download ${hideFshareFolderClass}' data-fshare-link='${link}'>Download</a>
           <a class='fshare-xpopover-btn fshare-xpopover-action copy-direct-link ${hideFshareFolderClass}' data-fshare-link='${link}'>Copy Direct Link</a>
-          <a class='fshare-xpopover-btn fshare-xpopover-action share-lan-link ${hideFshareFolderClass}' data-fshare-link='${link}'>Copy Direct Link</a>
+          <a class='fshare-xpopover-btn fshare-xpopover-action share-lan-link ${hideFshareFolderClass}' data-fshare-link='${link}'>Share LAN Link</a>
         </div>
       `;
     });
