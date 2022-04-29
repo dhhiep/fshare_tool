@@ -58,7 +58,7 @@ class Fshare {
     this.settings((data) => {
       $.ajax({
         method: 'get',
-        url: data.settings.serverUrl,
+        url: `${data.settings.serverUrl}/api/v1/health-check`,
         success: () => {
           if (option.displayServerStatus) {
             toastr.success(`${data.settings.serverUrl} is ready!`);

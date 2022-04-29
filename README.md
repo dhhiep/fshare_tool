@@ -18,9 +18,9 @@ foreman start
 
 *Check your server ready:*
 ```bash
-➜ curl 'http://localhost:7777'
+curl 'http://localhost:7777/api/v1/health-check'
 
-{"message":"Welcome to Fshare Tool"}%
+=> {"message":"Welcome to Fshare Tool"}%
 ```
 
 ### 3. Install Chrome Extension
