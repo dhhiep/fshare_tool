@@ -45,7 +45,7 @@ class Vlc
     def play_video(video_url)
       kill_vlc_instance!
 
-      exec_command = "#{vcl_path} --fullscreen #{video_url}"
+      exec_command = "#{vcl_path} --extraintf rc --rc-host 127.0.0.1:7744 --fullscreen #{video_url}"
       fork { exec(exec_command) }
     end
 
