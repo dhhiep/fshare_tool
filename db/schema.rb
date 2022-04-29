@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_23_080847) do
+ActiveRecord::Schema.define(version: 2022_04_29_101830) do
 
   create_table "activities", force: :cascade do |t|
     t.string "action"
@@ -20,6 +20,17 @@ ActiveRecord::Schema.define(version: 2022_04_23_080847) do
     t.string "file_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "playbacks", force: :cascade do |t|
+    t.string "url"
+    t.string "file_name"
+    t.integer "current_time", default: 0
+    t.integer "total_time", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["file_name"], name: "index_playbacks_on_file_name"
+    t.index ["url"], name: "index_playbacks_on_url"
   end
 
 end
