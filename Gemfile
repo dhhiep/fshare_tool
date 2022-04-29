@@ -43,6 +43,15 @@ gem 'haml', '~> 5.2'
 # Paginator for Rails
 gem 'kaminari', '~> 0.17'
 
+# Provides telnet client functionality.
+gem 'net-telnet', github: 'dhhiep/net-telnet'
+
+# scheduler for Ruby (at, in, cron and every jobs)
+gem 'rufus-scheduler', '~> 3.8'
+
+# Manage Procfile-based applications
+gem 'foreman', '~> 0.87'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

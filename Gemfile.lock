@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/dhhiep/net-telnet.git
+  revision: d59d9af83c5d0d30e6afe84f8f9c3ce5228b2e99
+  specs:
+    net-telnet (0.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -76,7 +82,13 @@ GEM
     down (5.2.4)
       addressable (~> 2.8)
     erubi (1.10.0)
+    et-orbi (1.2.6)
+      tzinfo
     ffi (1.15.4)
+    foreman (0.87.2)
+    fugit (1.5.2)
+      et-orbi (~> 1.1, >= 1.1.8)
+      raabro (~> 1.4)
     globalid (0.5.2)
       activesupport (>= 5.0)
     haml (5.2.2)
@@ -118,6 +130,7 @@ GEM
     public_suffix (4.0.6)
     puma (5.5.2)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.6.0)
     rack (2.2.3)
     rack-cors (1.1.1)
@@ -158,6 +171,8 @@ GEM
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    rufus-scheduler (3.8.1)
+      fugit (~> 1.1, >= 1.1.6)
     spring (3.0.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -185,15 +200,18 @@ DEPENDENCIES
   byebug
   dotenv-rails (~> 2.7)
   down (~> 5.0)
+  foreman (~> 0.87)
   haml (~> 5.2)
   httparty (~> 0.18)
   kaminari (~> 0.17)
   listen (~> 3.3)
+  net-telnet!
   pry
   puma (~> 5.0)
   rack-cors (~> 1.1)
   rails (~> 6.1.4)
   ransack (~> 2.4)
+  rufus-scheduler (~> 3.8)
   spring
   sqlite3 (~> 1.4)
   tzinfo-data
