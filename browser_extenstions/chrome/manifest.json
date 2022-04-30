@@ -23,7 +23,7 @@
     ],
     "js": [
       "scripts/vendor/jquery.min.js",
-      "scripts/vendor/xpopover.min.js",
+      "scripts/vendor/fshare-tool-popover.js",
       "scripts/vendor/toastr.min.js",
       "scripts/vendor/jquery.modal.min.js",
       "scripts/vendor/tui-grid.js",
@@ -34,7 +34,7 @@
       "scripts/main.js"
     ],
     "css": [
-      "styles/vendor/xpopover.css",
+      "styles/vendor/fshare-tool-popover.css",
       "styles/vendor/toastr.min.css",
       "styles/vendor/jquery.modal.css",
       "styles/vendor/tui-grid.css",

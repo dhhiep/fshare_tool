@@ -1,22 +1,22 @@
-.xpopover {
+.fshare-tool-popover {
   display: inline-block;
   *display: inline;
   *zoom: 1;
   position: relative; }
-  .xpopover .xpopover-container {
+  .fshare-tool-popover .fshare-tool-popover-container {
     display: inline-block;
     *display: inline;
     *zoom: 1;
     position: relative;
     padding: 8px; }
-    .xpopover .xpopover-container .xpopover-inner {
+    .fshare-tool-popover .fshare-tool-popover-container .fshare-tool-popover-inner {
       display: block;
       background-color: #fff;
       border-radius: 4px;
       -webkit-box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.15);
       -moz-box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.15);
       box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.15); }
-      .xpopover .xpopover-container .xpopover-inner .xpopover-title {
+      .fshare-tool-popover .fshare-tool-popover-container .fshare-tool-popover-inner .fshare-tool-popover-title {
         font-size: 14px;
         min-width: 177px;
         min-height: 32px;
@@ -24,11 +24,11 @@
         padding: 5px 16px 4px;
         border-bottom: 1px solid #eeeeee;
         color: #262626; }
-      .xpopover .xpopover-container .xpopover-inner .xpopover-content {
+      .fshare-tool-popover .fshare-tool-popover-container .fshare-tool-popover-inner .fshare-tool-popover-content {
         font-size: 14px;
         padding: 12px 16px;
         color: #8C8C8C; }
-    .xpopover .xpopover-container .xpopover-arrow {
+    .fshare-tool-popover .fshare-tool-popover-container .fshare-tool-popover-arrow {
       display: block;
       position: absolute;
       -o-transform: rotate(45deg);
@@ -36,7 +36,7 @@
       -moz-transform: rotate(45deg);
       -webkit-transform: rotate(45deg);
       transform: rotate(45deg); }
-  .xpopover.xpopover-top .xpopover-container .xpopover-arrow {
+  .fshare-tool-popover.fshare-tool-popover-top .fshare-tool-popover-container .fshare-tool-popover-arrow {
     top: auto;
     right: auto;
     bottom: 4px;
@@ -52,7 +52,7 @@
     -webkit-box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .xpopover.xpopover-topLeft .xpopover-container .xpopover-arrow {
+  .fshare-tool-popover.fshare-tool-popover-topLeft .fshare-tool-popover-container .fshare-tool-popover-arrow {
     top: auto;
     right: auto;
     bottom: 4px;
@@ -68,7 +68,7 @@
     -webkit-box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .xpopover.xpopover-topRight .xpopover-container .xpopover-arrow {
+  .fshare-tool-popover.fshare-tool-popover-topRight .fshare-tool-popover-container .fshare-tool-popover-arrow {
     top: auto;
     right: 24px;
     bottom: 4px;
@@ -84,7 +84,7 @@
     -webkit-box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: 3px 3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .xpopover.xpopover-rightTop .xpopover-container .xpopover-arrow {
+  .fshare-tool-popover.fshare-tool-popover-rightTop .fshare-tool-popover-container .fshare-tool-popover-arrow {
     top: 20px;
     right: auto;
     bottom: auto;
@@ -100,7 +100,7 @@
     -webkit-box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .xpopover.xpopover-right .xpopover-container .xpopover-arrow {
+  .fshare-tool-popover.fshare-tool-popover-right .fshare-tool-popover-container .fshare-tool-popover-arrow {
     top: 50%;
     right: auto;
     bottom: auto;
@@ -116,7 +116,7 @@
     -webkit-box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .xpopover.xpopover-rightBottom .xpopover-container .xpopover-arrow {
+  .fshare-tool-popover.fshare-tool-popover-rightBottom .fshare-tool-popover-container .fshare-tool-popover-arrow {
     top: auto;
     right: auto;
     bottom: 20px;
@@ -132,7 +132,7 @@
     -webkit-box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: -3px 3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .xpopover.xpopover-bottomLeft .xpopover-container .xpopover-arrow {
+  .fshare-tool-popover.fshare-tool-popover-bottomLeft .fshare-tool-popover-container .fshare-tool-popover-arrow {
     top: 4px;
     right: auto;
     bottom: auto;
@@ -148,7 +148,7 @@
     -webkit-box-shadow: -3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: -3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: -3px -3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .xpopover.xpopover-bottom .xpopover-container .xpopover-arrow {
+  .fshare-tool-popover.fshare-tool-popover-bottom .fshare-tool-popover-container .fshare-tool-popover-arrow {
     top: 4px;
     right: auto;
     bottom: auto;
@@ -164,7 +164,7 @@
     -webkit-box-shadow: -3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: -3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: -3px -3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .xpopover.xpopover-bottomRight .xpopover-container .xpopover-arrow {
+  .fshare-tool-popover.fshare-tool-popover-bottomRight .fshare-tool-popover-container .fshare-tool-popover-arrow {
     top: 4px;
     right: 24px;
     bottom: auto;
@@ -180,7 +180,7 @@
     -webkit-box-shadow: -3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: -3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: -3px -3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .xpopover.xpopover-leftTop .xpopover-container .xpopover-arrow {
+  .fshare-tool-popover.fshare-tool-popover-leftTop .fshare-tool-popover-container .fshare-tool-popover-arrow {
     top: 20px;
     right: 4px;
     bottom: auto;
@@ -196,7 +196,7 @@
     -webkit-box-shadow: 3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: 3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: 3px -3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .xpopover.xpopover-left .xpopover-container .xpopover-arrow {
+  .fshare-tool-popover.fshare-tool-popover-left .fshare-tool-popover-container .fshare-tool-popover-arrow {
     top: 50%;
     right: 4px;
     bottom: auto;
@@ -212,7 +212,7 @@
     -webkit-box-shadow: 3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     -moz-box-shadow: 3px -3px 7px 0 rgba(0, 0, 0, 0.07);
     box-shadow: 3px -3px 7px 0 rgba(0, 0, 0, 0.07); }
-  .xpopover.xpopover-leftBottom .xpopover-container .xpopover-arrow {
+  .fshare-tool-popover.fshare-tool-popover-leftBottom .fshare-tool-popover-container .fshare-tool-popover-arrow {
     top: auto;
     right: 4px;
     bottom: 20px;

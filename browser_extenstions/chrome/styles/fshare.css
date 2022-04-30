@@ -3,32 +3,32 @@
 }
 
 /* NON-FSHARE PAGE*/
-.xpopover-title {
+.fshare-tool-popover-title {
   display: none;
 }
 
-.xpopover .xpopover-container  {
+.fshare-tool-popover .fshare-tool-popover-container  {
   z-index: 999;
 }
 
-.xpopover .xpopover-container .xpopover-inner .xpopover-content {
+.fshare-tool-popover .fshare-tool-popover-container .fshare-tool-popover-inner .fshare-tool-popover-content {
   display: flex;
   padding: 5px 15px;
   flex-direction: column;
 }
 
-.xpopover-content .fshare-xpopover-wrapper {
+.fshare-tool-popover-content .fshare-fshare-tool-popover-wrapper {
   display: flex;
   align-items: center;
 }
 
-.xpopover-content .fshare-xpopover-wrapper .link-description {
+.fshare-tool-popover-content .fshare-fshare-tool-popover-wrapper .link-description {
   color: #146152;
   font-size: 17px;
   font-family: arial;
 }
 
-.xpopover-content .fshare-xpopover-wrapper .fshare-xpopover-btn {
+.fshare-tool-popover-content .fshare-fshare-tool-popover-wrapper .fshare-fshare-tool-popover-btn {
   color: #fff;
   text-decoration: none;
   margin: 5px 5px;
@@ -38,23 +38,23 @@
   cursor: pointer;
 }
 
-.xpopover-content .fshare-xpopover-wrapper .fshare-xpopover-btn.play {
+.fshare-tool-popover-content .fshare-fshare-tool-popover-wrapper .fshare-fshare-tool-popover-btn.play {
   background: #44803F;
 }
 
-.xpopover-content .fshare-xpopover-wrapper .fshare-xpopover-btn.download {
+.fshare-tool-popover-content .fshare-fshare-tool-popover-wrapper .fshare-fshare-tool-popover-btn.download {
   background: #146152;
 }
 
-.xpopover-content .fshare-xpopover-wrapper .fshare-xpopover-btn.copy-direct-link {
+.fshare-tool-popover-content .fshare-fshare-tool-popover-wrapper .fshare-fshare-tool-popover-btn.copy-direct-link {
   background: #861313;
 }
 
-.xpopover-content .fshare-xpopover-wrapper .fshare-xpopover-btn.open {
+.fshare-tool-popover-content .fshare-fshare-tool-popover-wrapper .fshare-fshare-tool-popover-btn.open {
   background: #FF5A33;
 }
 
-.xpopover-content .fshare-xpopover-wrapper .fshare-xpopover-btn.share-lan-link {
+.fshare-tool-popover-content .fshare-fshare-tool-popover-wrapper .fshare-fshare-tool-popover-btn.share-lan-link {
   background: #801eaa;
 }
 

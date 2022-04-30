@@ -147,16 +147,16 @@ class FshareFile extends Fshare {
         // Prevent link redirect
         element.click((event) => event.preventDefault());
 
-        element.xpopover({
+        element.fshareToolPopover({
           delay: 100,
           placement: 'top',
           trigger: 'hover',
           autoPlace: true,
-          content: this.xpopoverContentFshareLink(fshareLink).join(' '),
+          content: this.fshareToolPopoverContentFshareLink(fshareLink).join(' '),
         });
 
-        element.on('shown.bs.xpopover', () => {
-          setTimeout(() => element.xpopover('hide'), 2000);
+        element.on('shown.bs.fshare-tool-popover', () => {
+          setTimeout(() => element.fshare - tool - popover('hide'), 2000);
         });
       }
     });
@@ -171,7 +171,7 @@ class FshareFile extends Fshare {
     });
   }
 
-  xpopoverContentFshareLink(fshareLink) {
+  fshareToolPopoverContentFshareLink(fshareLink) {
     const links = fshareLink.split('\n');
     const linkDescriptionClass = links.length <= 1 ? 'hide' : '';
 
@@ -179,13 +179,13 @@ class FshareFile extends Fshare {
       const hideFshareFolderClass = this.isFshareFolderLink(link) ? 'hide' : '';
 
       return `
-        <div class='fshare-xpopover-wrapper'>
+        <div class='fshare-fshare-tool-popover-wrapper'>
           <span class='link-description ${linkDescriptionClass}'>#${this.fshareLinkCode(link)} - </span>
-          <a class='fshare-xpopover-btn open' data-fshare-link='${link}'>Open</span>
-          <a class='fshare-xpopover-btn fshare-xpopover-action play ${hideFshareFolderClass}' data-fshare-link='${link}'>Play</a>
-          <a class='fshare-xpopover-btn fshare-xpopover-action download ${hideFshareFolderClass}' data-fshare-link='${link}'>Download</a>
-          <a class='fshare-xpopover-btn fshare-xpopover-action copy-direct-link ${hideFshareFolderClass}' data-fshare-link='${link}'>Copy Direct Link</a>
-          <a class='fshare-xpopover-btn fshare-xpopover-action share-lan-link ${hideFshareFolderClass}' data-fshare-link='${link}'>Share LAN Link</a>
+          <a class='fshare-fshare-tool-popover-btn open' data-fshare-link='${link}'>Open</span>
+          <a class='fshare-fshare-tool-popover-btn fshare-fshare-tool-popover-action play ${hideFshareFolderClass}' data-fshare-link='${link}'>Play</a>
+          <a class='fshare-fshare-tool-popover-btn fshare-fshare-tool-popover-action download ${hideFshareFolderClass}' data-fshare-link='${link}'>Download</a>
+          <a class='fshare-fshare-tool-popover-btn fshare-fshare-tool-popover-action copy-direct-link ${hideFshareFolderClass}' data-fshare-link='${link}'>Copy Direct Link</a>
+          <a class='fshare-fshare-tool-popover-btn fshare-fshare-tool-popover-action share-lan-link ${hideFshareFolderClass}' data-fshare-link='${link}'>Share LAN Link</a>
         </div>
       `;
     });

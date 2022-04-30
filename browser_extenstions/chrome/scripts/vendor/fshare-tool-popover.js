@@ -14,11 +14,11 @@
     content: '',
   };
 
-  var XPopover = function (element, options) {
+  var FshareToolPopover = function (element, options) {
     this.ele = $(element);
     this.wrapper = null;
     this.product = null;
-    this.pid = 'xpopover_' + new Date().getTime();
+    this.pid = 'fshare-tool-popover_' + new Date().getTime();
     this.timer_in = null;
     this.timer_out = null;
     this.mouse = false;
@@ -48,11 +48,11 @@
     this.init();
   };
   //初始化
-  XPopover.prototype.init = function () {
+  FshareToolPopover.prototype.init = function () {
     this.bind();
   };
   //渲染
-  XPopover.prototype.render = function () {
+  FshareToolPopover.prototype.render = function () {
     var _this = this,
       _html,
       _pid = this.pid,
@@ -67,19 +67,19 @@
     }
     _html =
       '<div>' +
-      '<div class="xpopover" id="' +
+      '<div class="fshare-tool-popover" id="' +
       _pid +
       '">' +
-      '<div class="xpopover-container">' +
-      '<div class="xpopover-inner">' +
-      '<div class="xpopover-title">' +
+      '<div class="fshare-tool-popover-container">' +
+      '<div class="fshare-tool-popover-inner">' +
+      '<div class="fshare-tool-popover-title">' +
       _this.opts.title +
       '</div>' +
-      '<div class="xpopover-content">' +
+      '<div class="fshare-tool-popover-content">' +
       _content +
       '</div>' +
       '</div>' +
-      '<div class="xpopover-arrow"></div>' +
+      '<div class="fshare-tool-popover-arrow"></div>' +
       '</div>' +
       '</div>' +
       '</div>';
@@ -89,7 +89,7 @@
     this.place();
   };
   //放置
-  XPopover.prototype.place = function () {
+  FshareToolPopover.prototype.place = function () {
     var _this = this,
       _result, //最终输出的放置方案
       _plan = [], //自动优化放置后的可选方案
@@ -263,7 +263,7 @@
       top: _result.top + 'px',
       left: _result.left + 'px',
     });
-    _product.addClass('xpopover-' + _result.name);
+    _product.addClass('fshare-tool-popover-' + _result.name);
     //为渲染的产品绑定事件
     _targets.mouseenter(function () {
       _this.show();
@@ -275,7 +275,7 @@
     }
   };
   //绑定事件
-  XPopover.prototype.bind = function () {
+  FshareToolPopover.prototype.bind = function () {
     var _this = this,
       _trigger = this.opts.trigger,
       _element = $(this.ele);
@@ -293,8 +293,8 @@
         });
         $(document).on('click', function (e) {
           var _trigger = $(e.target);
-          if (!_trigger.closest('.xpopover').length) {
-            $('.xpopover').parent('div').remove();
+          if (!_trigger.closest('.fshare-tool-popover').length) {
+            $('.fshare-tool-popover').parent('div').remove();
           }
         });
         break;
@@ -327,7 +327,7 @@
     }
   };
   //显示
-  XPopover.prototype.show = function () {
+  FshareToolPopover.prototype.show = function () {
     var _this = this;
     window.clearTimeout(_this.timer_out);
     if (!_this.mouse) {
@@ -338,19 +338,19 @@
     }
   };
   //销毁
-  XPopover.prototype.destroy = function () {
+  FshareToolPopover.prototype.destroy = function () {
     var _this = this;
     window.clearTimeout(_this.timer_in);
     _this.timer_out = window.setTimeout(function () {
       _this.mouse = false;
-      $('.xpopover').parent('div').remove();
+      $('.fshare-tool-popover').parent('div').remove();
       _this.product = null;
     }, _this.opts.delay);
   };
-  $.fn.xpopover = function (options) {
+  $.fn.fshareToolPopover = function (options) {
     var _this = this;
     return _this.each(function () {
-      return new XPopover(this, options);
+      return new FshareToolPopover(this, options);
     });
   };
 })(jQuery);
