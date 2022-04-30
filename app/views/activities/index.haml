@@ -39,7 +39,11 @@
                   %th{width: '10px'} Ext
                   %th{width: '10px'} At
                   %th.w-1
-                    = link_to 'Delete', destroy_all_activities_path, class: 'text-orange', data: { method: :delete, confirm: 'Do you want to DELETE ALL activities?' }
+                    = link_to destroy_all_activities_path, class: 'text-orange', data: { method: :delete, confirm: 'Do you want to DELETE ALL activities?' } do
+                      %svg.icon.icon-tabler.icon-tabler-circle-minus{:fill => "none", :height => "24", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2", :viewbox => "0 0 24 24", :width => "24", :xmlns => "http://www.w3.org/2000/svg"}
+                        %path{:d => "M0 0h24v24H0z", :fill => "none", :stroke => "none"}
+                        %circle{:cx => "12", :cy => "12", :r => "9"}
+                        %line{:x1 => "9", :x2 => "15", :y1 => "12", :y2 => "12"}
               %tbody
                 - @activities.each do |activity|
                   - file_name = activity.file_name.truncate(80, separator: '...')
@@ -49,7 +53,11 @@
                     %td= display_activity_file_ext(activity).html_safe
                     %td= activity.created_at.strftime('%d/%m/%Y %H:%M:%S')
                     %td.text-right
-                      = link_to 'Delete', activity_path(activity), class: 'text-orange', class: 'text-orange', data: { method: :delete, confirm: "Do you want to remove #{file_name}?" }
+                      = link_to activity_path(activity), class: 'text-orange', class: 'text-orange', data: { method: :delete, confirm: "Do you want to remove #{file_name}?" } do
+                        %svg.icon.icon-tabler.icon-tabler-circle-minus{:fill => "none", :height => "24", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2", :viewbox => "0 0 24 24", :width => "24", :xmlns => "http://www.w3.org/2000/svg"}
+                          %path{:d => "M0 0h24v24H0z", :fill => "none", :stroke => "none"}
+                          %circle{:cx => "12", :cy => "12", :r => "9"}
+                          %line{:x1 => "9", :x2 => "15", :y1 => "12", :y2 => "12"}
           .card-footer.d-flex.align-items-center
             %p.m-0.text-muted
               Total
