@@ -15,7 +15,7 @@
             %h3.card-title Activities
           .card-body.py-3
             .d-flex
-              .ms-auto.text-muted
+              .text-muted.ms-auto
                 = search_form_for @q do |form|
                   Search:
                   .ms-2.d-inline-block
@@ -35,18 +35,21 @@
               %thead
                 %tr
                   %th{width: '10px'} Action
-                  %th Name
+                  %th{width: '700px'} Name
                   %th{width: '10px'} Ext
                   %th{width: '10px'} At
-                  %th
+                  %th.w-1
+                    = link_to 'Delete', destroy_all_activities_path, class: 'text-orange', data: { method: :delete, confirm: 'Do you want to DELETE ALL activities?' }
               %tbody
                 - @activities.each do |activity|
+                  - file_name = activity.file_name.truncate(80, separator: '...')
                   %tr
                     %td= display_activity_action(activity.action).html_safe
-                    %td= link_to activity.file_name, activity.url
+                    %td= link_to file_name, activity.url
                     %td= display_activity_file_ext(activity).html_safe
                     %td= activity.created_at.strftime('%d/%m/%Y %H:%M:%S')
-                    %td
+                    %td.text-right
+                      = link_to 'Delete', activity_path(activity), class: 'text-orange', class: 'text-orange', data: { method: :delete, confirm: "Do you want to remove #{file_name}?" }
           .card-footer.d-flex.align-items-center
             %p.m-0.text-muted
               Total

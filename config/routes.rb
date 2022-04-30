@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'activities#index'
 
-  resources :activities, only: %i[index]
+  resources :activities, only: %i[index destroy] do
+    collection do
+      delete :destroy_all, path: 'destroy-all'
+    end
+  end
 
   namespace :api do
     namespace :v1 do

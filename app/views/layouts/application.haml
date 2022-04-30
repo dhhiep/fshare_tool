@@ -5,6 +5,8 @@
     %meta{:content => "width=device-width, initial-scale=1, viewport-fit=cover", :name => "viewport"}/
     %meta{:content => "ie=edge", "http-equiv" => "X-UA-Compatible"}/
     %title Fshare Tool
+    = csrf_meta_tags
+    = csp_meta_tag
     / Favicon
     = favicon_link_tag asset_path('favicon-32x32.png')
     = favicon_link_tag asset_path('favicon-16x16.png')
@@ -15,6 +17,7 @@
     .page
       = render 'shared/layout/top_nav'
       = render 'shared/layout/main_nav'
+      = render 'shared/layout/notice'
       .page-wrapper
         = yield
         %footer.footer.footer-transparent.d-print-none
@@ -32,4 +35,5 @@
                     = "Copyright © #{Time.current.strftime('%Y')}"
                     = succeed "." do
                       %a.link-secondary{:href => "https://github.com/dhhiep"} Hiep Dinh
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     %script{:defer => "defer", :src => "dist/js/tabler.min.js?1650497181"}
