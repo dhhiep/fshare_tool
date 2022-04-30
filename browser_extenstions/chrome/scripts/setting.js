@@ -25,6 +25,15 @@ $('form#setting').submit((e) => {
   });
 });
 
+$('#view-playbacks').click((e) => {
+  e.preventDefault();
+  chrome.storage.sync.get(['settings'], (data) => {
+    const settings = data.settings;
+    console.log('[Fshare Tool] Settings:', settings);
+    chrome.windows.create({ url: `${settings.serverUrl}/playbacks`, type: 'popup' });
+  });
+});
+
 $('#view-activities').click((e) => {
   e.preventDefault();
   chrome.storage.sync.get(['settings'], (data) => {

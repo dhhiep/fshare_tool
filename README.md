@@ -72,10 +72,16 @@ curl 'http://localhost:7777/api/v1/health-check'
   2.  Hover on fshare url
   ![non-fshare-page-hover-fshare-url](/public/docs/non-fshare-page-hover-fshare-url.jpg)
 #### IV. Activities (History)
-1. Open Fshare Tool Extension - Configuration popup. Click on `View Activities`
+1. Open Fshare Tool Extension - Configuration popup. Click on `Activities`
 ![fshare-config-activities](/public/docs/fshare-config-activities.jpg)
 2. Activities page
 ![activities-page](/public/docs/activities-page.jpg)
+
+#### IV. Playbacks
+1. Open Fshare Tool Extension - Configuration popup. Click on `Playbacks`
+![fshare-config-playbacks](/public/docs/fshare-config-playbacks.jpg)
+2. Playbacks page
+![playbacks-page](/public/docs/playbacks-page.jpg)
 
 ## License
 

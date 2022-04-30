@@ -2,6 +2,20 @@
   width: 500px;
 }
 
-#setting .alert-success{
+#setting .alert-success {
   display: none;
+}
+
+#setting hr {
+  margin: 10px 0;
+}
+
+#setting ul#ref-links {
+  margin: 0;
+  padding: 0 7px;
+  list-style: none;
+}
+
+#setting ul#ref-links li {
+  margin-bottom: 5px;
 }

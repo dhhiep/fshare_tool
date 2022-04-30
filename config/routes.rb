@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :playbacks, only: %i[index destroy]
+
   namespace :api do
     namespace :v1 do
       resources :health_check, only: %i[index], path: 'health-check'

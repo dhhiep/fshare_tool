@@ -13,6 +13,7 @@
     / CSS files
     %link{:href => "dist/css/tabler.min.css?1650497181", :rel => "stylesheet"}/
     %link{:href => "dist/css/style.css", :rel => "stylesheet"}/
+    = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
   %body.layout-boxed
     .page
       = render 'shared/layout/top_nav'

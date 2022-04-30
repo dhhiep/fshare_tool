@@ -26,3 +26,12 @@
                   %line{:x1 => "7", :x2 => "17", :y1 => "19", :y2 => "19"}
               %span.nav-link-title
                 Activities
+          %li.nav-item
+            = link_to playbacks_path, class: 'nav-link' do
+              %span.nav-link-icon.d-md-none.d-lg-inline-block
+                %svg.icon.icon-tabler.icon-tabler-player-track-next{:fill => "none", :height => "24", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2", :viewbox => "0 0 24 24", :width => "24", :xmlns => "http://www.w3.org/2000/svg"}
+                  %path{:d => "M0 0h24v24H0z", :fill => "none", :stroke => "none"}
+                  %path{:d => "M3 5v14l8 -7z"}
+                  %path{:d => "M14 5v14l8 -7z"}
+              %span.nav-link-title
+                Playbacks
