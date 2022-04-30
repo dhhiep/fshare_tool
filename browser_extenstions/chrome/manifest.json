@@ -36,7 +36,7 @@
     "css": [
       "styles/vendor/xpopover.css",
       "styles/vendor/toastr.min.css",
-      "styles/vendor/jquery.modal.min.css",
+      "styles/vendor/jquery.modal.css",
       "styles/vendor/tui-grid.css",
       "styles/fshare.css"
     ]

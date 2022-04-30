@@ -112,7 +112,7 @@ class FshareFile extends Fshare {
 
   attachFshareLinkPopup() {
     const html = `
-        <div id="fshare-file-actions" class="modal">
+        <div id="fshare-file-actions" class="fshare-tool-modal">
           <ul>
             <li class="fshare-action download" data-fshare-link="${window.location.href}">Download</li>
             <li class="fshare-action play" data-fshare-link="${window.location.href}">Play in VLC</li>
