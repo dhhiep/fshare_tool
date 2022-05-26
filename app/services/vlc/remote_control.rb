@@ -3,7 +3,14 @@
 module Vlc
   class RemoteControl
     def file_name
-      send('info').match(/filename: (.*)\n/)[1]
+      @file_name ||= CGI.unescape(original_file_name.to_s)
+    end
+
+    def original_file_name
+      @original_file_name ||= send('info').match(/filename: (.*)\n/)
+      return if @original_file_name.blank?
+
+      @original_file_name[1]
     end
 
     def current_time
@@ -27,7 +34,7 @@ module Vlc
     end
 
     def vlc
-      @vlc ||= Net::Telnet::new('Host' => '127.0.0.1', 'Port' => 7744, 'Telnetmode' => false)
+      @vlc ||= Net::Telnet.new('Host' => '127.0.0.1', 'Port' => 7744, 'Telnetmode' => false)
     end
   end
 end

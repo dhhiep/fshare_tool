@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_29_101830) do
+ActiveRecord::Schema.define(version: 2022_05_08_092129) do
 
   create_table "activities", force: :cascade do |t|
     t.string "action"
@@ -29,7 +29,9 @@ ActiveRecord::Schema.define(version: 2022_04_29_101830) do
     t.integer "total_time", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "file_name_signature"
     t.index ["file_name"], name: "index_playbacks_on_file_name"
+    t.index ["file_name_signature"], name: "index_playbacks_on_file_name_signature"
     t.index ["url"], name: "index_playbacks_on_url"
   end
 

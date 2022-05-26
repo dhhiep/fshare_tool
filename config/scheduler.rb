@@ -7,7 +7,7 @@ FshareTool::Application.load_tasks
 
 scheduler = Rufus::Scheduler.new
 
-scheduler.every '30s' do
+scheduler.every '15s' do
   Rake::Task['playbacks:updater'].reenable
   Rake::Task['playbacks:updater'].invoke
 rescue => _e # rubocop:disable Lint/SuppressedException

@@ -42,7 +42,7 @@ class Activity < ApplicationRecord
       when :list_v3
         response.body&.dig(:current, :name)
       when :play, :shared_link, :direct_link
-        response.body&.dig(:location).to_s.split('/').last
+        CGI.unescape(response.body&.dig(:location).to_s.split('/').last)
       else
         'Unknown'
       end
