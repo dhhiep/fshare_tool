@@ -19,7 +19,9 @@
     "matches": ["*://*/*"],
     "exclude_matches": [
       "*://github.com/*",
-      "*://npmjs.com/*"
+      "*://npmjs.com/*",
+      "*://*.google.com/*",
+      "*://*.google.com.vn/*"
     ],
     "js": [
       "scripts/vendor/jquery.min.js",
