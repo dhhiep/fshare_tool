@@ -21,6 +21,14 @@ module Vlc
       send('get_length').to_i
     end
 
+    def play(file_path)
+      send('stop')
+      send('clear')
+      send("add #{file_path}")
+      sleep 2
+      send('F on')
+    end
+
     def seek(time)
       send("seek #{time}")
     end
@@ -34,7 +42,15 @@ module Vlc
     end
 
     def vlc
-      @vlc ||= Net::Telnet.new('Host' => '127.0.0.1', 'Port' => 7744, 'Telnetmode' => false)
+      @vlc ||= Net::Telnet.new(vlc_rc_params)
+    end
+
+    def vlc_rc_params
+      {
+        'Host' => ENV.fetch('VLC_RC_HOST', 'host.docker.internal'),
+        'Port' => ENV.fetch('VLC_RC_PORT', 7654).to_i,
+        'Telnetmode' => false
+      }
     end
   end
 end

@@ -39,6 +39,17 @@ curl 'http://localhost:7777/api/v1/health-check'
 + **Note**:
   - config-popup: ![config-popup](/public/docs/config-popup.jpg)
 
+## Enable VLC Telnet Remote Control
+1. Open VLC Preferences
+2. At Tab `Interface` click `Show All`
+3. Choose Interface > Main Interfaces and check on:
+   1. Remote Control Interface
+   2. Lua Interpreter
+   3. Telnet
+4. At Interface > Main Interfaces > Lua, set field Lua CLI > TCP command input is `:7654` (your port)
+5. Restart VLC
+  ![vlc_lua_interface_config](/public/docs/vlc_lua_interface_config.jpg)
+
 ## Usage
 #### I. Fshare Folder
 1. Goto Fshare Folder page (For example: https://www.fshare.vn/folder/26CZMYLU8CN2).
@@ -74,7 +85,7 @@ curl 'http://localhost:7777/api/v1/health-check'
 #### IV. Activities (History)
 1. Open Fshare Tool Extension - Configuration popup. Click on `Activities`
 ![fshare-config-activities](/public/docs/fshare-config-activities.jpg)
-2. Activities page
+1. Activities page
 ![activities-page](/public/docs/activities-page.jpg)
 
 #### IV. Playbacks

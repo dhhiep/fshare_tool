@@ -116,9 +116,6 @@ class FshareFolder extends Fshare {
         case 'video':
           FshareFile.openInVlc(linkcode);
           break;
-        case 'subtitle':
-          FshareFile.openInVlc(linkcode);
-          break;
         default:
           FshareFile.download(linkcode);
           break;
@@ -316,10 +313,6 @@ class FshareFolder extends Fshare {
 
     if (type == 'video') {
       actions.push(`<li class="fshare-action play-in-vlc play" data-fshare-link='${furl}'>Play in VLC</li>`);
-    }
-
-    if (type == 'subtitle') {
-      actions.push(`<li class="fshare-action add-to-vlc play" data-fshare-link='${furl}'>Add to VLC</li>`);
     }
 
     return `

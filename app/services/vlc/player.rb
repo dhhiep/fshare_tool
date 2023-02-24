@@ -27,10 +27,8 @@ module Vlc
           file_name = direct_link_url.split('/').last
           Playback.add(file_name, video_or_subtitle_id)
           Playback.resume(file_name)
-        elsif subtitle?(direct_link_url)
-          add_subtitle(direct_link_url)
         else
-          raise Error::GatewayError, { message: 'File extension invalid!', details: direct_link_url.to_s.split('/').last }
+          raise Error::GatewayError, "File extension invalid! #{direct_link_url.to_s.split('/').last}"
         end
 
         response
@@ -49,24 +47,12 @@ module Vlc
       end
 
       def play_video(video_url)
-        kill_vlc_instance!
-
-        exec_command = "#{vcl_path} --extraintf rc --rc-host 127.0.0.1:7744 --fullscreen #{video_url}"
-        fork { exec(exec_command) }
-      end
-
-      def add_subtitle(subtitle_url)
-        subtitle_file_path = Down.download(subtitle_url)
-
-        fork { exec("open -a '#{vcl_path}' #{subtitle_file_path.path}") }
-      end
-
-      def kill_vlc_instance!
-        system("ps aux | grep VLC | awk '{print $2}' | xargs kill")
-      end
-
-      def vcl_path
-        ENV.fetch('VLC_PATH')
+        Retryable.retryable(tries: 5, sleep: 0.5) do
+          vlc_rc = Vlc::RemoteControl.new
+          vlc_rc.play(video_url)
+        rescue Errno::ECONNREFUSED
+          raise Error::GatewayError, 'Please open VLC app first!'
+        end
       end
     end
   end

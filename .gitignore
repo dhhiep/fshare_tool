@@ -18,6 +18,7 @@
 !/tmp/.keep
 
 # Ignore pidfiles, but keep the directory.
+pids/*
 /tmp/pids/*
 !/tmp/pids/
 !/tmp/pids/.keep
@@ -41,3 +42,4 @@ browser_extenstions/chrome/node_modules
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+procodile.log

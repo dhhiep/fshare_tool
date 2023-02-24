@@ -58,6 +58,10 @@ gem 'retryable', '~> 3.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.2'
 
+# TODO: Remove after dockerize is fixed
+# Run processes in the background (and foreground) on Mac & Linux from a Procfile (for production and/or development environments)
+gem 'procodile', '~> 1.0', '>= 1.0.26'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

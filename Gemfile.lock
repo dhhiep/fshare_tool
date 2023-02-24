@@ -102,6 +102,8 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
+    json (2.6.3)
+    json (2.6.3-java)
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -135,6 +137,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.12.5-x86-mingw32)
       racc (~> 1.4)
+    procodile (1.0.26)
+      json
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -243,6 +247,7 @@ DEPENDENCIES
   kaminari (~> 0.17)
   listen (~> 3.3)
   net-telnet!
+  procodile (~> 1.0, >= 1.0.26)
   pry
   puma (~> 5.0)
   rack-cors (~> 1.1)
