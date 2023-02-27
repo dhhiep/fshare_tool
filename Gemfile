@@ -4,18 +4,23 @@ source 'https://rubygems.org'
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.2'
+ruby '3.2.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4'
+
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+gem 'sqlite3', '~> 1.4', platforms: [:mingw, :mswin, :x64_mingw, :ruby]
+
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
+
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -58,16 +63,14 @@ gem 'retryable', '~> 3.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.2'
 
-# TODO: Remove after dockerize is fixed
-# Run processes in the background (and foreground) on Mac & Linux from a Procfile (for production and/or development environments)
-gem 'procodile', '~> 1.0', '>= 1.0.26'
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 
+  # A runtime developer console and IRB alternative with powerful introspection capabilities.
   gem 'pry'
 
+  # A Ruby gem to load environment variables from `.env`.
   gem 'dotenv-rails', '~> 2.7'
 end
 

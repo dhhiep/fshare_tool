@@ -1,0 +1,49 @@
+# Ignore uploaded files in development.
+/storage/*
+!/storage/.keep
+.byebug_history
+
+# Ignore local environment variables
+.env
+.env.template
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore pidfiles, but keep the directory.
+pids/*
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-*
+
+# Ignore system files or unnecessary files
+.DS_Store
+.bin
+.git
+.bundle
+.byebug_history
+.dockerignore
+.gitignore
+README.md
+Makefile
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+procodile.log
+coverage
+log
+browser_extenstions
+
+# Node modules
+node_modules
+browser_extenstions/chrome/node_modules
