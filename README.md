@@ -9,7 +9,7 @@ Fshare Tool is a utility designed to help you with the following tasks:
 ## Get Fshare API Keys
 To obtain Fshare API keys, follow these steps:
 1. Go to https://www.fshare.vn/api-doc
-2. Click Lấy App Key and provide your information. FSHARE_APP_KEY and FSHARE_USER_AGENT will be sent to your email address.
+2. Click `Lấy App Key` and provide your information. `FSHARE_APP_KEY` and `FSHARE_USER_AGENT` will be sent to your email address.
 
 ## Setup Server
 
