@@ -1,27 +1,45 @@
 # Fshare Tool
-Fshare Tool is a utility to help to:
-1. Download file directly from fshare/non-fshare page.
-2. Play upstream movie (via VLC) without signed-in.
-3. Play/download directly from Fshare folder.
-4. View Activities (History) download, get Direct-Link, Play video.
-5. Support resume previous video playback.
+Fshare Tool is a utility designed to help you with the following tasks:
+1. Download files directly from Fshare or non-Fshare pages.
+2. Play upstream movies (via VLC) without needing to sign in.
+3. Play or download files directly from Fshare folders.
+4. View download activities (history) and get direct links, and play videos.
+5. Support resume playback of previously played videos.
 
 ## Get Fshare API Keys
+To obtain Fshare API keys, follow these steps:
 1. Go to https://www.fshare.vn/api-doc
-2. Click `Lấy App Key` and input your information, FSHARE_APP_KEY and FSHARE_USER_AGENT will send to you email.
+2. Click Lấy App Key and provide your information. FSHARE_APP_KEY and FSHARE_USER_AGENT will be sent to your email address.
 
 ## Setup Server
 
+### 1. Start rails app
 ```bash
 git clone git@github.com:dhhiep/fshare_tool.git
 cd fshare_tool
 cp .env.template .env
+bundle install
 [REPLACE YOUR KEY TO .env]
 rake db:create db:migrate db:seed
 foreman start
 ```
 
-*Check your server ready:*
+### 2. Via Docker
+```bash
+docker run -d --name fshare_tool \
+  -p 7777:3000 \
+  -v ~/fshare_tool_dbs:/var/workspace/db/sqlite_dbs \
+  -e VLC_RC_HOST=host.docker.internal \
+  -e VLC_RC_PORT=7654 \
+  -e FSHARE_USER_EMAIL=REPLACE_YOUR_KEY@gmail.com \
+  -e FSHARE_PASSWORD=REPLACE_YOUR_KEY \
+  -e FSHARE_APP_KEY=REPLACE_YOUR_KEY \
+  -e FSHARE_USER_AGENT=REPLACE_YOUR_KEY \
+  hoanghiepitvnn/fshare_tool:latest
+```
+
+### Check server is ready or not, please run command below
+
 ```bash
 curl 'http://localhost:7777/api/v1/health-check'
 
