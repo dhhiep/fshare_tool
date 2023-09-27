@@ -13,18 +13,7 @@ To obtain Fshare API keys, follow these steps:
 
 ## Setup Server
 
-### 1. Start rails app
-```bash
-git clone git@github.com:dhhiep/fshare_tool.git
-cd fshare_tool
-cp .env.template .env
-bundle install
-[REPLACE YOUR KEY TO .env]
-rake db:create db:migrate db:seed
-foreman start
-```
-
-### 2. Via Docker
+### Via Docker
 ```bash
 docker run -d --name fshare_tool \
   -p 7777:3000 \
