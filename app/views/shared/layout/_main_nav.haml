@@ -35,3 +35,12 @@
                   %path{:d => "M14 5v14l8 -7z"}
               %span.nav-link-title
                 Playbacks
+          %li.nav-item
+            = link_to rclone_transfers_path, class: 'nav-link' do
+              %span.nav-link-icon.d-md-none.d-lg-inline-block
+                %svg.icon.icon-tabler.icon-tabler-transfer-vertical{:fill => "none", :height => "24", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2", :viewbox => "0 0 24 24", :width => "24", :xmlns => "http://www.w3.org/2000/svg"}
+                  %path{:d => "M0 0h24v24H0z", :fill => "none", :stroke => "none"}
+                  %path{:d => "M10 4v16l-6 -5.5"}
+                  %path{:d => "M14 20v-16l6 5.5"}
+              %span.nav-link-title
+                Transfers

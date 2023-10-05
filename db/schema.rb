@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_08_092129) do
+ActiveRecord::Schema.define(version: 2023_10_05_160552) do
 
   create_table "activities", force: :cascade do |t|
     t.string "action"
@@ -20,6 +20,21 @@ ActiveRecord::Schema.define(version: 2022_05_08_092129) do
     t.string "file_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "playbacks", force: :cascade do |t|
@@ -33,6 +48,17 @@ ActiveRecord::Schema.define(version: 2022_05_08_092129) do
     t.index ["file_name"], name: "index_playbacks_on_file_name"
     t.index ["file_name_signature"], name: "index_playbacks_on_file_name_signature"
     t.index ["url"], name: "index_playbacks_on_url"
+  end
+
+  create_table "rclone_transfers", force: :cascade do |t|
+    t.string "file_id"
+    t.string "file_name"
+    t.string "remote"
+    t.string "destination_path"
+    t.string "progress"
+    t.integer "job_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

@@ -76,6 +76,16 @@ GEM
     concurrent-ruby (1.2.2)
     crass (1.0.6)
     date (3.3.3)
+    delayed_job (4.1.11)
+      activesupport (>= 3.0, < 8.0)
+    delayed_job_active_record (4.1.7)
+      activerecord (>= 3.0, < 8.0)
+      delayed_job (>= 3.0, < 5)
+    delayed_job_web (1.4.4)
+      activerecord (> 3.0.0)
+      delayed_job (> 2.0.3)
+      rack-protection (>= 1.5.5)
+      sinatra (>= 1.4.4)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
@@ -121,6 +131,8 @@ GEM
     minitest (5.17.0)
     msgpack (1.6.0)
     multi_xml (0.6.0)
+    mustermann (3.0.0)
+      ruby2_keywords (~> 0.0.1)
     net-imap (0.3.4)
       date
       net-protocol
@@ -145,6 +157,8 @@ GEM
     rack (2.2.6.2)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
+    rack-protection (3.1.0)
+      rack (~> 2.2, >= 2.2.4)
     rack-proxy (0.7.6)
       rack
     rack-test (2.0.2)
@@ -184,9 +198,15 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     retryable (3.0.5)
+    ruby2_keywords (0.0.5)
     rufus-scheduler (3.8.2)
       fugit (~> 1.1, >= 1.1.6)
     semantic_range (3.0.0)
+    sinatra (3.1.0)
+      mustermann (~> 3.0)
+      rack (~> 2.2, >= 2.2.4)
+      rack-protection (= 3.1.0)
+      tilt (~> 2.0)
     spring (4.1.1)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
@@ -218,6 +238,8 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
+  delayed_job_active_record
+  delayed_job_web
   dotenv-rails (~> 2.7)
   down (~> 5.0)
   foreman (~> 0.87)

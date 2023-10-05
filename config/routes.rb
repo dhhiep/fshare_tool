@@ -4,9 +4,17 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'activities#index'
 
+  match '/delayed-job' => DelayedJobWeb, :anchor => false, :via => %i[get post]
+
   resources :activities, only: %i[index destroy] do
     collection do
       delete :destroy_all, path: 'destroy-all'
+    end
+  end
+
+  resources :rclone_transfers, only: %i[index destroy], path: :transfers do
+    member do
+      post :retransfer
     end
   end
 

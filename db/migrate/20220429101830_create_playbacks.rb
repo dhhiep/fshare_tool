@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePlaybacks < ActiveRecord::Migration[6.1]
   def change
     create_table :playbacks do |t|
