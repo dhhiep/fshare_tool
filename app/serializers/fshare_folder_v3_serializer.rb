@@ -11,7 +11,7 @@ class FshareFolderV3Serializer
     @data = data
   end
 
-  def call
+  def call # rubocop:disable Metrics/AbcSize Metrics/MethodLength
     data[:items].each do |row|
       row[:is_folder] = folder?(row)
       row[:_children] = [] if folder?(row)

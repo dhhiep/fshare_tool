@@ -1,0 +1,85 @@
+.container-xl
+  .page-header.d-print-none
+    .row.g-2.align-items-center
+      .col
+        .page-pretitle
+          Overview
+        %h2.page-title
+          Transfers
+.page-body
+  .container-xl
+    .row.row-deck.row-cards
+      .col-12
+        .card
+          .card-header
+            %h3.card-title Transfers
+          .card-body.py-3
+            .d-flex
+              .text-muted.ms-auto
+                = search_form_for @q do |form|
+                  Search:
+                  .ms-2.d-inline-block
+                    = form.text_field :file_name_cont, placeholder: 'Name', class: 'form-control form-control-sm'
+          .table-responsive
+            %table.table.card-table.table-vcenter.text-nowrap.datatable
+              %thead
+                %tr
+                  %th{width: '400px'} Name
+                  %th Status
+                  %th Progess
+                  %th Destination
+                  %th.w-1
+              %tbody
+                - @rclone_transfers.each do |rclone_transfer|
+                  - next if rclone_transfer.id.blank?
+                  - file_name = rclone_transfer.file_name.truncate(80, separator: '...')
+                  %tr
+                    %td= link_to file_name, rclone_transfer.fshare_file_url
+                    %td= display_transfer_status(rclone_transfer.status).html_safe
+                    %td
+                      .progress-text
+                        %small.form-hint
+                          = rclone_transfer.progress_percentage.negative? ? 'Queued' : rclone_transfer.progress
+                      %progress.progress.progress-sm{max: 100 , :value => rclone_transfer.progress_percentage}
+                    %td{'data-bs-toggle'=>"tooltip", 'data-bs-placement'=>"top", title: rclone_transfer.destination }
+                      = link_to(rclone_transfer.remote, '#')
+                    %td.text-right
+                      = link_to retransfer_rclone_transfer_path(rclone_transfer), class: 'text-success', data: { method: :post, confirm: "Do you want to re-transfer #{file_name} to #{rclone_transfer.destination}?" } do
+                        %svg.icon.icon-tabler.icon-tabler-rotate-clockwise{:fill => "none", :height => "24", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2", :viewbox => "0 0 24 24", :width => "24", :xmlns => "http://www.w3.org/2000/svg"}
+                          %path{:d => "M0 0h24v24H0z", :fill => "none", :stroke => "none"}
+                          %path{:d => "M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5"}
+                      = link_to rclone_transfer_path(rclone_transfer), class: 'text-orange', data: { method: :delete, confirm: "Do you want to remove #{file_name}?" } do
+                        %svg.icon.icon-tabler.icon-tabler-circle-minus{:fill => "none", :height => "24", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2", :viewbox => "0 0 24 24", :width => "24", :xmlns => "http://www.w3.org/2000/svg"}
+                          %path{:d => "M0 0h24v24H0z", :fill => "none", :stroke => "none"}
+                          %circle{:cx => "12", :cy => "12", :r => "9"}
+                          %line{:x1 => "9", :x2 => "15", :y1 => "12", :y2 => "12"}
+          .card-footer.d-flex.align-items-center
+            %p.m-0.text-muted
+              Total
+              %span= @rclone_transfers.total_count
+              entries
+            %ul.pagination.m-0.ms-auto.hide
+              %li.page-item.disabled
+                %a.page-link{"aria-disabled" => "true", :href => "#", :tabindex => "-1"}
+                  %svg.icon{:fill => "none", :height => "24", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2", :viewbox => "0 0 24 24", :width => "24", :xmlns => "http://www.w3.org/2000/svg"}
+                    %path{:d => "M0 0h24v24H0z", :fill => "none", :stroke => "none"}
+                    %polyline{:points => "15 6 9 12 15 18"}
+                  prev
+              %li.page-item
+                %a.page-link{:href => "#"} 1
+              %li.page-item.active
+                %a.page-link{:href => "#"} 2
+              %li.page-item
+                %a.page-link{:href => "#"} 3
+              %li.page-item
+                %a.page-link{:href => "#"} 4
+              %li.page-item
+                %a.page-link{:href => "#"} 5
+              %li.page-item
+                %a.page-link{:href => "#"}
+                  next
+                  %svg.icon{:fill => "none", :height => "24", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2", :viewbox => "0 0 24 24", :width => "24", :xmlns => "http://www.w3.org/2000/svg"}
+                    %path{:d => "M0 0h24v24H0z", :fill => "none", :stroke => "none"}
+                    %polyline{:points => "9 6 15 12 9 18"}
+%script
+  setTimeout(() => location.reload(), 3000);
