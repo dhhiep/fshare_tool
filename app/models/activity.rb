@@ -1,5 +1,20 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: activities
+#
+#  id         :integer          not null, primary key
+#  action     :string
+#  file_ext   :string
+#  file_name  :string
+#  file_type  :string
+#  url        :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+
 class Activity < ApplicationRecord
   ACTIONS = %i[
     play

@@ -1,5 +1,20 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: rclone_transfers
+#
+#  id               :integer          not null, primary key
+#  destination_path :string
+#  file_name        :string
+#  progress         :string
+#  remote           :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  file_id          :string
+#  job_id           :integer
+#
+
 class RcloneTransfer < ApplicationRecord
   belongs_to :job, class_name: '::Delayed::Job', dependent: :destroy
 

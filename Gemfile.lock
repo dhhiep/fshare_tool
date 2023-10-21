@@ -68,6 +68,9 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
+    annotate (2.7.5)
+      activerecord (>= 3.2, < 7.0)
+      rake (>= 10.4, < 13.0)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
@@ -189,7 +192,7 @@ GEM
       method_source
       rake (>= 12.2)
       thor (~> 1.0)
-    rake (13.0.6)
+    rake (12.3.3)
     ransack (2.6.0)
       activerecord (>= 6.0.4)
       activesupport (>= 6.0.4)
@@ -236,6 +239,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate (~> 2.7)
   bootsnap (>= 1.4.4)
   byebug
   delayed_job_active_record
