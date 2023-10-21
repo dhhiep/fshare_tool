@@ -1,5 +1,26 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: playbacks
+#
+#  id                  :integer          not null, primary key
+#  current_time        :integer          default(0)
+#  file_name           :string
+#  file_name_signature :string
+#  total_time          :integer          default(0)
+#  url                 :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#
+# Indexes
+#
+#  index_playbacks_on_file_name            (file_name)
+#  index_playbacks_on_file_name_signature  (file_name_signature)
+#  index_playbacks_on_url                  (url)
+#
+
+
 class Playback < ApplicationRecord
   before_validation :unescape_file_name
   before_validation :set_file_name_signature
