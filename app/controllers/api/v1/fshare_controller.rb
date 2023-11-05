@@ -27,7 +27,7 @@ module Api
         render json: data, code: response.code
       end
 
-      def list_v3
+      def list_v3 # rubocop:disable Metrics/AbcSize
         page = (params[:page] || 1).to_i
         per_page = (params[:per_page] || 50).to_i
         options = { sort_by: 'type,name' }
@@ -44,6 +44,12 @@ module Api
         Activity.track_response(:play, response) if response.success?
 
         render json: { message: 'VLC playing ...' }, status: :ok
+      end
+
+      def transfer_file
+        Rclone.clone(params[:file_id], params[:remote], params[:destination_path], { file_name: params[:file_name] })
+
+        render json: { message: 'File is transferring ...' }, status: :ok
       end
 
       private

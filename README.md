@@ -1,5 +1,7 @@
 # Fshare Tool
+
 Fshare Tool is a utility designed to help you with the following tasks:
+
 1. Download files directly from Fshare or non-Fshare pages.
 2. Play upstream movies (via VLC) without needing to sign in.
 3. Play or download files directly from Fshare folders.
@@ -7,17 +9,23 @@ Fshare Tool is a utility designed to help you with the following tasks:
 5. Support resume playback of previously played videos.
 
 ## Get Fshare API Keys
+
 To obtain Fshare API keys, follow these steps:
-1. Go to https://www.fshare.vn/api-doc
+
+1. Go to [https://www.fshare.vn/api-doc](https://www.fshare.vn/api-doc)
 2. Click `Lấy App Key` and provide your information. `FSHARE_APP_KEY` and `FSHARE_USER_AGENT` will be sent to your email address.
 
 ## Setup Server
 
 ### Via Docker
+
 ```bash
 docker run -d --name fshare_tool \
+  --restart unless-stopped \
   -p 7777:3000 \
   -v ~/fshare_tool_dbs:/var/workspace/db/sqlite_dbs \
+  -v ./log:/var/workspace/log \
+  -v ~/.config/rclone/rclone.conf:/var/workspace/.config/rclone/rclone.conf \
   -e VLC_RC_HOST=host.docker.internal \
   -e VLC_RC_PORT=7654 \
   -e FSHARE_USER_EMAIL=REPLACE_YOUR_KEY@gmail.com \
@@ -39,14 +47,15 @@ curl 'http://localhost:7777/api/v1/health-check'
 
 1. Go to [chrome://extensions/](chrome://extensions/)
 2. Enable `Developer mode` (at right top corner).
-3. Click `Load unpacked` browse to `[fshare_tool cloned]/browser_extenstions/chrome`.
+3. Click `Load unpacked` browse to `[fshare_tool cloned]/browser_extensions/chrome`.
 4. Click to Fshare Tool Extension Icon to open popup configuration `section 1` (image `config-popup`).
 5. Input your server address at `section 2` (image `config-popup`).
 
 + **Note**:
-  - config-popup: ![config-popup](/public/docs/config-popup.jpg)
+  + config-popup: ![config-popup](/public/docs/config-popup.jpg)
 
 ## Enable VLC Telnet Remote Control
+
 1. Open VLC Preferences
 2. At Tab `Interface` click `Show All`
 3. Choose Interface > Main Interfaces and check on:
@@ -58,11 +67,13 @@ curl 'http://localhost:7777/api/v1/health-check'
   ![vlc_lua_interface_config](/public/docs/vlc_lua_interface_config.jpg)
 
 ## Usage
-#### I. Fshare Folder
-1. Goto Fshare Folder page (For example: https://www.fshare.vn/folder/26CZMYLU8CN2).
+
+### I. Fshare Folder
+
+1. Goto Fshare Folder page (For example: [https://www.fshare.vn/folder/26CZMYLU8CN2](https://www.fshare.vn/folder/26CZMYLU8CN2)).
 2. Waiting for processed section display.
 ![fshare-folder-processed-list](/public/docs/fshare-folder-processed-list.jpg)
-1. Actions:
+3. Actions:
      1. Click on folder: Expand folder.
      2. Double click on line item is:
          1. Expand if line item is folder.
@@ -73,29 +84,32 @@ curl 'http://localhost:7777/api/v1/health-check'
       ![fshare-folder-context-menu](/public/docs/fshare-folder-context-menu.jpg)
      4. Click buttons in column `Actions`
       ![fshare-folder-column-actions](/public/docs/fshare-folder-column-actions.jpg)
-#### II. Fshare File
-  1. Goto Fshare File page. For example: https://www.fshare.vn/file/T3Q59LYOCEMQGVR.
+
+### II. Fshare File
+
+  1. Goto Fshare File page. For example: [https://www.fshare.vn/file/T3Q59LYOCEMQGVR](https://www.fshare.vn/file/T3Q59LYOCEMQGVR).
   2. Waiting for popup display.
    ![fshare-file-popup](/public/docs/fshare-file-popup.jpg)
   3. Actions:
       1. Download.
       2. Play in VLC.
       3. Copy Direct Link: Direct Link will copy to clipboard.
-      4. Share LAN Link: Share link download to other in LAN.
-      ![fshare-file-share-lan-link](/public/docs/fshare-file-share-lan-link.jpg)
 
-      **Note:** Re-click `Save` at `config-popup` (section III. Install Chrome Extension) update newest your LAN IP.
-#### III. Non-Fshare page
-  1. Goto site contain fshare link (For example: https://maclife.vn/bo-cai-macos-monterey-12-cac-phien-ban.html).
-  2.  Hover on fshare url
+### III. Non-Fshare page
+
+  1. Goto site contain fshare link (For example: [https://maclife.vn/bo-cai-macos-monterey-12-cac-phien-ban.html](https://maclife.vn/bo-cai-macos-monterey-12-cac-phien-ban.html)).
+  2. Hover on fshare url
   ![non-fshare-page-hover-fshare-url](/public/docs/non-fshare-page-hover-fshare-url.jpg)
-#### IV. Activities (History)
+
+### IV. Activities (History)
+
 1. Open Fshare Tool Extension - Configuration popup. Click on `Activities`
 ![fshare-config-activities](/public/docs/fshare-config-activities.jpg)
-1. Activities page
+2. Activities page
 ![activities-page](/public/docs/activities-page.jpg)
 
 #### IV. Playbacks
+
 1. Open Fshare Tool Extension - Configuration popup. Click on `Playbacks`
 ![fshare-config-playbacks](/public/docs/fshare-config-playbacks.jpg)
 2. Playbacks page

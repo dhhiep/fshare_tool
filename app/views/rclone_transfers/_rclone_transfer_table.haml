@@ -1,0 +1,24 @@
+- rclone_transfers.each do |rclone_transfer|
+  - next if rclone_transfer.id.blank?
+  - file_name = rclone_transfer.file_name.truncate(80, separator: '...')
+  %tr
+    %td= display_transfer_status(rclone_transfer.status).html_safe
+    %td
+      .progress-text
+        %small.form-hint
+          %div.mb-1.text-primary
+            = link_to rclone_transfer.fshare_file_url do
+              %strong.text-danger= "[#{rclone_transfer.remote}]:"
+              = rclone_transfer.destination
+          %div= rclone_transfer.progress_percentage.negative? ? 'Queued' : rclone_transfer.progress
+      %progress.progress.progress-sm{max: 100 , :value => rclone_transfer.progress_percentage}
+    %td.text-right
+      = link_to retransfer_rclone_transfer_path(rclone_transfer), class: 'text-success', data: { method: :post, confirm: "Do you want to re-transfer #{file_name} to [#{rclone_transfer.remote}]:#{rclone_transfer.destination}?" } do
+        %svg.icon.icon-tabler.icon-tabler-rotate-clockwise{:fill => "none", :height => "24", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2", :viewbox => "0 0 24 24", :width => "24", :xmlns => "http://www.w3.org/2000/svg"}
+          %path{:d => "M0 0h24v24H0z", :fill => "none", :stroke => "none"}
+          %path{:d => "M4.05 11a8 8 0 1 1 .5 4m-.5 5v-5h5"}
+      = link_to rclone_transfer_path(rclone_transfer), class: 'text-orange',  data: { method: :delete, confirm: "Do you want to remove #{file_name}?" } do
+        %svg.icon.icon-tabler.icon-tabler-circle-minus{:fill => "none", :height => "24", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2", :viewbox => "0 0 24 24", :width => "24", :xmlns => "http://www.w3.org/2000/svg"}
+          %path{:d => "M0 0h24v24H0z", :fill => "none", :stroke => "none"}
+          %circle{:cx => "12", :cy => "12", :r => "9"}
+          %line{:x1 => "9", :x2 => "15", :y1 => "12", :y2 => "12"}
