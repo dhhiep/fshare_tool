@@ -8,7 +8,7 @@ chrome.storage.sync.get(['settings'], (data) => {
   }
 });
 
-$('form#setting').submit((e) => {
+$('form#setting').on('submit', (e) => {
   e.preventDefault();
 
   const formData = buildFormData(e.target);
@@ -25,7 +25,7 @@ $('form#setting').submit((e) => {
   });
 });
 
-$('#view-playbacks').click((e) => {
+$('#view-playbacks').on('click', (e) => {
   e.preventDefault();
   chrome.storage.sync.get(['settings'], (data) => {
     const settings = data.settings;
@@ -34,12 +34,21 @@ $('#view-playbacks').click((e) => {
   });
 });
 
-$('#view-activities').click((e) => {
+$('#view-activities').on('click', (e) => {
   e.preventDefault();
   chrome.storage.sync.get(['settings'], (data) => {
     const settings = data.settings;
     console.log('[Fshare Tool] Settings:', settings);
     chrome.windows.create({ url: settings.serverUrl, type: 'popup' });
+  });
+});
+
+$('#view-transfers').on('click', (e) => {
+  e.preventDefault();
+  chrome.storage.sync.get(['settings'], (data) => {
+    const settings = data.settings;
+    console.log('[Fshare Tool] Settings:', settings);
+    chrome.windows.create({ url: `${settings.serverUrl}/transfers`, type: 'popup' });
   });
 });
 

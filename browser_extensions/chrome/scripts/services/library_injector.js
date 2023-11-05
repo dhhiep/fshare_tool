@@ -37,7 +37,7 @@ const libraryInjector = () => {
       disabled: () => false,
       matches: [],
       onload: () => {
-        $(document).ready(() => {
+        $(() => {
           setTimeout(function () {
             FshareFile.attachActions();
           }, 500);
@@ -49,7 +49,7 @@ const libraryInjector = () => {
       disabled: () => false,
       matches: [/https:\/\/.*fshare.vn\/folder\//],
       onload: () => {
-        $(document).ready(() => {
+        $(() => {
           setTimeout(function () {
             FshareFolder.attachActions();
           }, 500);
@@ -71,7 +71,5 @@ const libraryInjector = () => {
     // Avoid error undefined appendChild
     document;
     (document.head || document.documentElement).appendChild(scriptTag);
-
-    console.log('Library', lib.path, 'was injected!');
   });
 };

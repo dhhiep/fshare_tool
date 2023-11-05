@@ -44,7 +44,7 @@ class FshareFolder extends Fshare {
         {
           header: 'Name',
           name: 'name',
-          minWidth: 600,
+          minWidth: 400,
           resizable: true,
         },
         {
@@ -69,7 +69,7 @@ class FshareFolder extends Fshare {
         },
         {
           header: 'Actions',
-          width: 280,
+          width: 380,
           formatter: this.cellActionsBuilder,
         },
       ],
@@ -114,7 +114,7 @@ class FshareFolder extends Fshare {
           tree.expand(rowKey);
           break;
         case 'video':
-          FshareFile.openInVlc(linkcode);
+          FshareFile.watch(linkcode);
           break;
         default:
           FshareFile.download(linkcode);
@@ -196,10 +196,10 @@ class FshareFolder extends Fshare {
           },
         },
         {
-          name: 'play',
-          label: 'Play in VLC',
+          name: 'watch',
+          label: 'Watch',
           action: () => {
-            FshareFile.openInVlc(linkcode);
+            FshareFile.watch(linkcode);
           },
         },
       ],
@@ -305,14 +305,17 @@ class FshareFolder extends Fshare {
 
   cellActionsBuilder(data) {
     const { furl, type } = data.row;
-    let actions = [`<li class="fshare-action open" data-fshare-link='${furl}'>Open</li>`];
+    if (!furl) return;
+
+    let actions = [`<li class="action-open btn-open" data-fshare-link='${furl}'>Open</li>`];
 
     if (type !== 'folder') {
-      actions.push(`<li class="fshare-action download" data-fshare-link='${furl}'>Download</li>`);
+      actions.push(`<li class="action-download btn-download" data-fshare-link='${furl}'>Download</li>`);
+      actions.push(`<li class="action-show-transfer-popup btn-transfer" data-fshare-link='${furl}'>Transfer</li>`);
     }
 
     if (type == 'video') {
-      actions.push(`<li class="fshare-action play-in-vlc play" data-fshare-link='${furl}'>Play in VLC</li>`);
+      actions.push(`<li class="action-play btn-play" data-fshare-link='${furl}'>Watch</li>`);
     }
 
     return `

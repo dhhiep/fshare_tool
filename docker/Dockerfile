@@ -1,6 +1,6 @@
 FROM ruby:3.2.1-alpine3.17
 
-ENV BUILD_PACKAGES bash build-base openssh git tzdata nodejs yarn sqlite-dev gcompat
+ENV BUILD_PACKAGES bash build-base openssh git tzdata nodejs yarn sqlite-dev gcompat rclone
 ENV TZ=Asia/Ho_Chi_Minh
 ENV NODE_OPTIONS=--openssl-legacy-provider
 RUN apk add --update --no-cache $BUILD_PACKAGES \
@@ -20,6 +20,7 @@ COPY package.json yarn.lock ./
 RUN yarn install
 
 COPY ./ ./
+RUN mkdir -p .cache
 RUN RAILS_ENV=production bundle exec rake assets:precompile
 
 ARG RAILS_PORT

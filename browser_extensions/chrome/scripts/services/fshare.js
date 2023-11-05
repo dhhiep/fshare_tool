@@ -1,7 +1,7 @@
 class Fshare {
   constructor() {}
 
-  // Class methods
+  // Global bindings for all HTML elements has attribute [data-fshare-link]
   static bindingFshareActions() {
     $(document)
       .off('click', '[data-fshare-link]')
@@ -11,20 +11,30 @@ class Fshare {
         const element = $(event.target);
 
         const fshareLink = element.data('fshareLink');
-        console.log('fshareLink', fshareLink);
         const fshareLinkCode = fshare.fshareLinkCode(fshareLink);
+        if (fshareLinkCode == undefined || fshareLinkCode == '') return;
 
-        console.log('fshareLinkCode', fshareLinkCode);
-
-        if (element.hasClass('play')) {
-          FshareFile.openInVlc(fshareLinkCode);
+        if (element.hasClass('action-play')) {
+          FshareFile.watch(fshareLinkCode);
         }
 
-        if (element.hasClass('download')) {
+        if (element.hasClass('action-download')) {
           FshareFile.download(fshareLinkCode);
         }
 
-        if (element.hasClass('copy-direct-link')) {
+        if (element.hasClass('action-show-transfer-popup')) {
+          FshareFile.showTransferPopup(fshareLinkCode);
+        }
+
+        if (element.hasClass('action-transfer-file')) {
+          const remote = element.data('remote');
+          const path = element.data('path');
+          const fileName = element.data('fileName');
+
+          FshareFile.transfer(fshareLinkCode, remote, path, fileName);
+        }
+
+        if (element.hasClass('action-copy-direct-link')) {
           FshareFile.directLink(fshareLinkCode).then((link) => {
             navigator.clipboard.writeText(link);
             const fileName = link.split('/').pop();
@@ -32,16 +42,7 @@ class Fshare {
           });
         }
 
-        if (element.hasClass('share-lan-link')) {
-          console.log('share-lan-link', fshareLinkCode);
-          FshareFile.lanLink(fshareLinkCode).then((link) => {
-            console.log('lanLink', link);
-            navigator.clipboard.writeText(link);
-            toastr.success(`LAN Link ${link} has been copied to clipboard`);
-          });
-        }
-
-        if (element.hasClass('open')) {
+        if (element.hasClass('action-open')) {
           window.open(fshareLink);
         }
       });
@@ -53,7 +54,7 @@ class Fshare {
   }
 
   healthCheck(option = {}, onSuccess = () => {}, onError = () => {}) {
-    if (option.displayServerStatus == null) option.displayServerStatus = true;
+    if (option.displayServerStatus == null) option.displayServerStatus = false;
 
     this.settings((data) => {
       $.ajax({
@@ -61,7 +62,7 @@ class Fshare {
         url: `${data.settings.serverUrl}/api/v1/health-check`,
         success: () => {
           if (option.displayServerStatus) {
-            toastr.success(`${data.settings.serverUrl} is ready!`);
+            // toastr.success(`${data.settings.serverUrl} is ready!`);
           }
 
           onSuccess(data);
@@ -89,12 +90,20 @@ class Fshare {
     return /^https:\/\/.*fshare.vn\/(file|folder)\//.test(url);
   }
 
+  isFshareFileLink(url) {
+    return /https:\/\/.*fshare.vn\/file\//.test(url);
+  }
+
   isFshareFolderLink(url) {
     return /https:\/\/.*fshare.vn\/folder\//.test(url);
   }
 
   currentFshareLinkCode() {
     return this.fshareLinkCode(location.href);
+  }
+
+  fshareFileUrlFromCode(code) {
+    return `https://www.fshare.vn/file/${code}`;
   }
 
   fshareLinkCode(url) {

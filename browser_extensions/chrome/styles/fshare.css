@@ -1,5 +1,37 @@
-.hide {
+.banner-right-folder{
   display: none;
+}
+
+.action-open{
+  background: #FF5A33;
+  color: #fff;
+}
+
+.action-download{
+  color: #fff;
+  background-color: #0099ff;
+}
+ .action-copy-direct-link{
+  color: #fff;
+  background-color: #cd1417;
+}
+
+.action-transfer-file, .action-show-transfer-popup{
+  color: #fff;
+  background-color: #ff9d00;
+}
+
+.action-play{
+  color: #fff;
+  background-color: #44803F;
+}
+
+.hide, .hidden {
+  display: none;
+}
+
+.jquery-modal.blocker{
+  z-index: 99999;
 }
 
 /* NON-FSHARE PAGE*/
@@ -38,33 +70,13 @@
   cursor: pointer;
 }
 
-.fshare-tool-popover-content .fshare-fshare-tool-popover-wrapper .fshare-fshare-tool-popover-btn.play {
-  background: #44803F;
-}
-
-.fshare-tool-popover-content .fshare-fshare-tool-popover-wrapper .fshare-fshare-tool-popover-btn.download {
-  background: #146152;
-}
-
-.fshare-tool-popover-content .fshare-fshare-tool-popover-wrapper .fshare-fshare-tool-popover-btn.copy-direct-link {
-  background: #861313;
-}
-
-.fshare-tool-popover-content .fshare-fshare-tool-popover-wrapper .fshare-fshare-tool-popover-btn.open {
-  background: #FF5A33;
-}
-
-.fshare-tool-popover-content .fshare-fshare-tool-popover-wrapper .fshare-fshare-tool-popover-btn.share-lan-link {
-  background: #801eaa;
-}
-
 /* FSHARE FILE PAGE */
-#fshare-file-actions {
+#fshare-file-actions-modal {
   width: auto;
   max-width: 800px;
 }
 
-#fshare-file-actions ul {
+#fshare-file-actions-modal ul {
   display: flex;
   flex-direction: row;
   list-style: none;
@@ -73,7 +85,7 @@
   margin: 0;
 }
 
-#fshare-file-actions ul li {
+#fshare-file-actions-modal ul li {
   color: #fff;
   text-decoration: none;
   margin: 0px 10px;
@@ -81,22 +93,6 @@
   border-radius: 4px;
   font-family: 'Arial';
   cursor: pointer;
-}
-
-#fshare-file-actions ul li.download {
-  background: #FF5A33;
-}
-
-#fshare-file-actions ul li.play {
-  background: #44803F;
-}
-
-#fshare-file-actions ul li.copy-direct-link {
-  background: #861313;
-}
-
-#fshare-file-actions ul li.share-lan-link {
-  background: #801eaa;
 }
 
 /* FSHARE FOLDER PAGE */
@@ -143,7 +139,6 @@
   display: inline-block;
   cursor: pointer;
   color: #fff;
-  background-color: #cd1417;
   border-radius: 2px;
   margin-left: 5px;
   box-sizing: border-box;
@@ -151,22 +146,58 @@
   padding: 8px 15px;
   text-align: center;
 }
-
-.fshare-folder-action ul li.open{
-  background: #FF5A33;
-}
-
-.fshare-folder-action ul li.play-in-vlc{
-  width: 100px;
-  background: #44803F;
-
-}
-.fshare-folder-action ul li.add-to-vlc {
-  width: 100px;
-  background: #146152;
-}
-
 .fshare-folder-action ul li a {
   text-decoration: none;
   color: #fff;
+}
+
+#transfer-form-modal{
+  width: 80vw;
+  max-width: 100%;
+  z-index: 999999;
+  /* min-height: 40vh; */
+  position: relative;
+}
+
+#transfer-form-modal * {
+  box-sizing: border-box;
+}
+
+#transfer-form-modal label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#transfer-form-modal select, #transfer-form-modal input {
+  padding: 1em 0.875em;
+  border: 2px solid #dcdcdc;
+  border-radius: 4px;
+  width: 100%;
+  font-weight: 600;
+  color: #303030;
+}
+#transfer-form-modal .full-path {
+  font-style: italic;
+  margin-bottom: 30px;
+  font-size: small;
+}
+
+#transfer-form-modal .actions {
+  text-align: right;
+}
+
+#transfer-form-modal .actions button.action-transfer {
+  margin: auto;
+  background-color: #ff9d00;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  color: #fff;
+  box-shadow: 1px 2px 4px 0px #00000024;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#transfer-form-modal #rclone-remote-directories {
+  margin-bottom: 20px;
 }

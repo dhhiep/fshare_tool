@@ -20,6 +20,7 @@ services:
     ports:
       - 7777:$RAILS_PORT
     environment:
+      RCLONE_CUSTOM_CONFIG: /var/workspace/.config/rclone/rclone.conf
       VLC_RC_HOST: $VLC_RC_HOST
       VLC_RC_PORT: $VLC_RC_PORT
       FSHARE_USER_EMAIL: $FSHARE_USER_EMAIL
@@ -28,6 +29,7 @@ services:
       FSHARE_USER_AGENT: $FSHARE_USER_AGENT
     volumes:
       - app_dbs:/var/workspace/db/sqlite_dbs
+      - $RCLONE_CUSTOM_CONFIG:/var/workspace/.config/rclone/rclone.conf
 volumes:
   app_dbs:
     driver: local
