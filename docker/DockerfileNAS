@@ -1,0 +1,38 @@
+FROM amd64/ruby:3.2.1
+
+ENV BUILD_PACKAGES bash build-essential git tzdata nodejs npm sqlite3 libsqlite3-dev \
+                   rclone locales cmake gnupg2 \
+                   libpq-dev libgd-dev
+
+ENV LANG=en_US.UTF-8 \
+    TZ=Asia/Ho_Chi_Minh
+
+RUN apt-get update && apt-get -y upgrade && apt-get install -y $BUILD_PACKAGES
+RUN apt-get remove --purge -y yarn cmdtest
+RUN npm install --global yarn
+
+RUN echo $LANG > /etc/timezone && \
+    locale-gen $LANG && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+    dpkg-reconfigure -f noninteractive tzdata && \
+    rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt/* && apt-get clean
+
+ARG BUNDLER_VERSION
+RUN gem install bundler -v $BUNDLER_VERSION
+
+ARG WORKSPACE
+WORKDIR $WORKSPACE
+
+COPY Gemfile Gemfile.lock ./
+RUN bundle config --local without development:test && bundle install --jobs 4 --retry 3 --quiet && bundle clean --force
+
+COPY package.json yarn.lock ./
+RUN yarn install
+
+COPY ./ ./
+RUN mkdir -p .cache
+RUN RAILS_ENV=production bundle exec rake assets:precompile
+
+ARG RAILS_PORT
+ENV RAILS_PORT=$RAILS_PORT
+EXPOSE $RAILS_PORT
+CMD docker/scripts/entry_point.sh

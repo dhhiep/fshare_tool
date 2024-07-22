@@ -20,6 +20,10 @@ To obtain Fshare API keys, follow these steps:
 ### Via Docker
 
 ```bash
+touch ~/.config/rclone/rclone.conf # create config file if file config does not existed
+```
+
+```bash
 docker run -d --name fshare_tool \
   --restart unless-stopped \
   -p 7777:3000 \
@@ -35,9 +39,27 @@ docker run -d --name fshare_tool \
   hoanghiepitvnn/fshare_tool:latest
 ```
 
-Note: Because [windows does not recognize symbol "\\"](https://github.com/dhhiep/fshare_tool/issues/1) so we need using one line for command docker run:
+Note:
+1. Because [windows does not recognize symbol "\\"](https://github.com/dhhiep/fshare_tool/issues/1) so we need using one line for command docker run:
 ```bash
 docker run -d --name fshare_tool --restart unless-stopped -p 7777:3000 -v ~/fshare_tool_dbs:/var/workspace/db/sqlite_dbs -v ./log:/var/workspace/log -v ~/.config/rclone/rclone.conf:/var/workspace/.config/rclone/rclone.conf -e VLC_RC_HOST=host.docker.internal -e VLC_RC_PORT=7654 -e FSHARE_USER_EMAIL=REPLACE_YOUR_KEY@gmail.com -e FSHARE_PASSWORD=REPLACE_YOUR_KEY -e FSHARE_APP_KEY=REPLACE_YOUR_KEY -e FSHARE_USER_AGENT=REPLACE_YOUR_KEY hoanghiepitvnn/fshare_tool:latest
+```
+
+2. For [support NAS Synology run on docker](https://github.com/dhhiep/fshare_tool/issues/7) you switch to tag `:nas` instead of `:latest`
+```
+docker run -d --name fshare_tool \
+  --restart unless-stopped \
+  -p 7777:3000 \
+  -v ~/fshare_tool_dbs:/var/workspace/db/sqlite_dbs \
+  -v ./log:/var/workspace/log \
+  -v ~/.config/rclone/rclone.conf:/var/workspace/.config/rclone/rclone.conf \
+  -e VLC_RC_HOST=host.docker.internal \
+  -e VLC_RC_PORT=7654 \
+  -e FSHARE_USER_EMAIL=REPLACE_YOUR_KEY@gmail.com \
+  -e FSHARE_PASSWORD=REPLACE_YOUR_KEY \
+  -e FSHARE_APP_KEY=REPLACE_YOUR_KEY \
+  -e FSHARE_USER_AGENT=REPLACE_YOUR_KEY \
+  hoanghiepitvnn/fshare_tool:nas
 ```
 
 ### Check server is ready or not, please run command below

@@ -1,0 +1,36 @@
+---
+# Usage:
+# docker-compose --file docker-compose-nas.yml build
+# docker-compose --file docker-compose-nas.yml down; docker-compose --file docker-compose-nas.yml up --build --detach
+# docker-compose --file docker-compose-nas.yml down; docker rmi -f fshare_tool_app; docker rmi $(docker images --filter "dangling=true" -q --no-trunc) -f; docker-compose --file docker-compose-nas.yml up --build --detach
+
+version: '3.8'
+
+services:
+  app:
+    image: 'hoanghiepitvnn/fshare_tool:nas'
+    platform: linux/amd64
+    restart: always
+    build:
+      context: ./
+      dockerfile: ./docker/DockerfileNAS
+      args:
+        BUNDLER_VERSION: $BUNDLER_VERSION
+        WORKSPACE: $WORKSPACE
+        RAILS_PORT: $RAILS_PORT
+    ports:
+      - 7777:$RAILS_PORT
+    environment:
+      RCLONE_CUSTOM_CONFIG: /var/workspace/.config/rclone/rclone.conf
+      VLC_RC_HOST: $VLC_RC_HOST
+      VLC_RC_PORT: $VLC_RC_PORT
+      FSHARE_USER_EMAIL: $FSHARE_USER_EMAIL
+      FSHARE_PASSWORD: $FSHARE_PASSWORD
+      FSHARE_APP_KEY: $FSHARE_APP_KEY
+      FSHARE_USER_AGENT: $FSHARE_USER_AGENT
+    volumes:
+      - app_dbs:/var/workspace/db/sqlite_dbs
+      - $RCLONE_CUSTOM_CONFIG:/var/workspace/.config/rclone/rclone.conf
+volumes:
+  app_dbs:
+    driver: local
