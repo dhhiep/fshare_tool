@@ -34,6 +34,7 @@ const libraryInjector = () => {
     },
     {
       path: 'scripts/services/fshare/file.js',
+      delayExecution: 100,
       disabled: () => false,
       matches: [],
       onload: () => {
@@ -46,6 +47,7 @@ const libraryInjector = () => {
     },
     {
       path: 'scripts/services/fshare/folder.js',
+      delayExecution: 100,
       disabled: () => false,
       matches: [/https:\/\/.*fshare.vn\/folder\//],
       onload: () => {
@@ -55,6 +57,13 @@ const libraryInjector = () => {
           }, 500);
         });
       },
+    },
+    {
+      path: 'scripts/services/fshare/directory_tree.js',
+      delayExecution: 100,
+      disabled: () => false,
+      matches: [/https:\/\/.*fshare.vn\/folder\//],
+      onload: () => {},
     },
   ];
 
@@ -68,8 +77,10 @@ const libraryInjector = () => {
     const currentDomainMatched = lib.matches.filter((regex) => regex.test(location.href));
     if (lib.matches.length > 0 && currentDomainMatched.length == 0) return;
 
-    // Avoid error undefined appendChild
-    document;
-    (document.head || document.documentElement).appendChild(scriptTag);
+    setTimeout(() => {
+      // Avoid error undefined appendChild
+      document;
+      (document.head || document.documentElement).appendChild(scriptTag);
+    }, lib.delayExecution || 0);
   });
 };
